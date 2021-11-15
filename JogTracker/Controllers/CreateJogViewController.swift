@@ -50,6 +50,11 @@ private extension CreateJogViewController {
     private func setupBackgroundView() {
         backgroundView.backgroundColor = .appleGreen
         backgroundView.layer.cornerRadius = 30
+        
+        backgroundView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.33).cgColor
+        backgroundView.layer.shadowOffset = .zero
+        backgroundView.layer.shadowOpacity = 1.0
+        backgroundView.layer.shadowRadius = 10.0
     }
     
     private func setupLabels() {

@@ -10,7 +10,7 @@ import UIKit
 extension UIColor {
     static let babyPurple: UIColor = UIColor(red: 233.0 / 255.0, green: 144.0 / 255.0, blue: 249.0 / 255.0, alpha: 1.0)
     static let appleGreen: UIColor = UIColor(red: 126.0 / 255.0, green: 211.0 / 255.0, blue: 33.0 / 255.0, alpha: 1.0)
-    
+    static let greyishTwo: UIColor = UIColor(red: 176.0 / 255.0, green: 176.0 / 255.0, blue: 176.0 / 255.0, alpha: 1.0)
 }
 
 extension UIFont {

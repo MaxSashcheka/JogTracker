@@ -13,18 +13,13 @@ class LoginScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        enterButton.layer.cornerRadius = enterButton.frame.height / 2
-        enterButton.layer.borderWidth = 3
-        enterButton.layer.borderColor = UIColor.babyPurple.cgColor
-        enterButton.titleLabel?.font = UIFont.sfText(20, .bold)
-        enterButton.titleLabel?.tintColor = .babyPurple
-        
+    
     }
 
 
     @IBAction func enterButtonTapped(_ sender: UIButton) {
-        
+        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MenuViewController")
+        self.navigationController?.pushViewController(menuViewController, animated: true)
     }
 }
 

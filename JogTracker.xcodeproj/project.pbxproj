@@ -18,6 +18,10 @@
 		DD1C8AFE2742ACA800647DFC /* SFUIText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1C8AFD2742ACA800647DFC /* SFUIText-Bold.ttf */; };
 		DD1C8B012742ACCC00647DFC /* SFUIText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1C8B002742ACCC00647DFC /* SFUIText-Medium.ttf */; };
 		DD1C8B052742AFEA00647DFC /* CreateJogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1C8B042742AFEA00647DFC /* CreateJogViewController.swift */; };
+		DD35D0DE2742E16F00595515 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D0DD2742E16F00595515 /* InfoViewController.swift */; };
+		DD35D0E12742E72D00595515 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D0E02742E72D00595515 /* MenuViewController.swift */; };
+		DD35D0E42742EB3F00595515 /* EmptyJogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D0E32742EB3F00595515 /* EmptyJogsViewController.swift */; };
+		DD35D0E82742EDA400595515 /* PurpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D0E72742EDA400595515 /* PurpleButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		DD1C8AFD2742ACA800647DFC /* SFUIText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Bold.ttf"; sourceTree = "<group>"; };
 		DD1C8B002742ACCC00647DFC /* SFUIText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Medium.ttf"; sourceTree = "<group>"; };
 		DD1C8B042742AFEA00647DFC /* CreateJogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJogViewController.swift; sourceTree = "<group>"; };
+		DD35D0DD2742E16F00595515 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		DD35D0E02742E72D00595515 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		DD35D0E32742EB3F00595515 /* EmptyJogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyJogsViewController.swift; sourceTree = "<group>"; };
+		DD35D0E72742EDA400595515 /* PurpleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurpleButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +74,7 @@
 		DD1C8ADB2742A85D00647DFC /* JogTracker */ = {
 			isa = PBXGroup;
 			children = (
+				DD35D0E62742ED8600595515 /* CustomViews */,
 				DD1C8B032742AFA100647DFC /* Controllers */,
 				DD1C8AF92742AB3D00647DFC /* Fonts */,
 				DD1C8AF42742A9C900647DFC /* Utilities */,
@@ -110,8 +119,19 @@
 			children = (
 				DD1C8AE02742A85D00647DFC /* LoginScreenViewController.swift */,
 				DD1C8B042742AFEA00647DFC /* CreateJogViewController.swift */,
+				DD35D0DD2742E16F00595515 /* InfoViewController.swift */,
+				DD35D0E02742E72D00595515 /* MenuViewController.swift */,
+				DD35D0E32742EB3F00595515 /* EmptyJogsViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DD35D0E62742ED8600595515 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				DD35D0E72742EDA400595515 /* PurpleButton.swift */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,9 +208,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD1C8B052742AFEA00647DFC /* CreateJogViewController.swift in Sources */,
+				DD35D0E42742EB3F00595515 /* EmptyJogsViewController.swift in Sources */,
+				DD35D0E82742EDA400595515 /* PurpleButton.swift in Sources */,
 				DD1C8AE12742A85D00647DFC /* LoginScreenViewController.swift in Sources */,
 				DD1C8ADD2742A85D00647DFC /* AppDelegate.swift in Sources */,
+				DD35D0E12742E72D00595515 /* MenuViewController.swift in Sources */,
 				DD1C8ADF2742A85D00647DFC /* SceneDelegate.swift in Sources */,
+				DD35D0DE2742E16F00595515 /* InfoViewController.swift in Sources */,
 				DD1C8AF62742A9D300647DFC /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
