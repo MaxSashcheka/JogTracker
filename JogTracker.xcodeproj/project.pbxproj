@@ -9,21 +9,31 @@
 /* Begin PBXBuildFile section */
 		DD1C8ADD2742A85D00647DFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1C8ADC2742A85D00647DFC /* AppDelegate.swift */; };
 		DD1C8ADF2742A85D00647DFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1C8ADE2742A85D00647DFC /* SceneDelegate.swift */; };
-		DD1C8AE12742A85D00647DFC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1C8AE02742A85D00647DFC /* ViewController.swift */; };
+		DD1C8AE12742A85D00647DFC /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1C8AE02742A85D00647DFC /* LoginScreenViewController.swift */; };
 		DD1C8AE42742A85D00647DFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD1C8AE22742A85D00647DFC /* Main.storyboard */; };
 		DD1C8AE62742A86000647DFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD1C8AE52742A86000647DFC /* Assets.xcassets */; };
 		DD1C8AE92742A86000647DFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD1C8AE72742A86000647DFC /* LaunchScreen.storyboard */; };
+		DD1C8AF62742A9D300647DFC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1C8AF52742A9D300647DFC /* Extensions.swift */; };
+		DD1C8AFB2742AC9C00647DFC /* SFUIText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1C8AFA2742AC9C00647DFC /* SFUIText-Regular.ttf */; };
+		DD1C8AFE2742ACA800647DFC /* SFUIText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1C8AFD2742ACA800647DFC /* SFUIText-Bold.ttf */; };
+		DD1C8B012742ACCC00647DFC /* SFUIText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD1C8B002742ACCC00647DFC /* SFUIText-Medium.ttf */; };
+		DD1C8B052742AFEA00647DFC /* CreateJogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1C8B042742AFEA00647DFC /* CreateJogViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DD1C8AD92742A85D00647DFC /* JogTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JogTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD1C8ADC2742A85D00647DFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD1C8ADE2742A85D00647DFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DD1C8AE02742A85D00647DFC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DD1C8AE02742A85D00647DFC /* LoginScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewController.swift; sourceTree = "<group>"; };
 		DD1C8AE32742A85D00647DFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD1C8AE52742A86000647DFC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD1C8AE82742A86000647DFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD1C8AEA2742A86000647DFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD1C8AF52742A9D300647DFC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		DD1C8AFA2742AC9C00647DFC /* SFUIText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Regular.ttf"; sourceTree = "<group>"; };
+		DD1C8AFD2742ACA800647DFC /* SFUIText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Bold.ttf"; sourceTree = "<group>"; };
+		DD1C8B002742ACCC00647DFC /* SFUIText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Medium.ttf"; sourceTree = "<group>"; };
+		DD1C8B042742AFEA00647DFC /* CreateJogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJogViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +66,52 @@
 		DD1C8ADB2742A85D00647DFC /* JogTracker */ = {
 			isa = PBXGroup;
 			children = (
-				DD1C8ADC2742A85D00647DFC /* AppDelegate.swift */,
-				DD1C8ADE2742A85D00647DFC /* SceneDelegate.swift */,
-				DD1C8AE02742A85D00647DFC /* ViewController.swift */,
+				DD1C8B032742AFA100647DFC /* Controllers */,
+				DD1C8AF92742AB3D00647DFC /* Fonts */,
+				DD1C8AF42742A9C900647DFC /* Utilities */,
+				DD1C8AF12742A87900647DFC /* ApplicationFiles */,
 				DD1C8AE22742A85D00647DFC /* Main.storyboard */,
 				DD1C8AE52742A86000647DFC /* Assets.xcassets */,
-				DD1C8AE72742A86000647DFC /* LaunchScreen.storyboard */,
 				DD1C8AEA2742A86000647DFC /* Info.plist */,
 			);
 			path = JogTracker;
+			sourceTree = "<group>";
+		};
+		DD1C8AF12742A87900647DFC /* ApplicationFiles */ = {
+			isa = PBXGroup;
+			children = (
+				DD1C8ADC2742A85D00647DFC /* AppDelegate.swift */,
+				DD1C8ADE2742A85D00647DFC /* SceneDelegate.swift */,
+				DD1C8AE72742A86000647DFC /* LaunchScreen.storyboard */,
+			);
+			path = ApplicationFiles;
+			sourceTree = "<group>";
+		};
+		DD1C8AF42742A9C900647DFC /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				DD1C8AF52742A9D300647DFC /* Extensions.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		DD1C8AF92742AB3D00647DFC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DD1C8B002742ACCC00647DFC /* SFUIText-Medium.ttf */,
+				DD1C8AFD2742ACA800647DFC /* SFUIText-Bold.ttf */,
+				DD1C8AFA2742AC9C00647DFC /* SFUIText-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		DD1C8B032742AFA100647DFC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DD1C8AE02742A85D00647DFC /* LoginScreenViewController.swift */,
+				DD1C8B042742AFEA00647DFC /* CreateJogViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,8 +172,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD1C8AE92742A86000647DFC /* LaunchScreen.storyboard in Resources */,
+				DD1C8B012742ACCC00647DFC /* SFUIText-Medium.ttf in Resources */,
 				DD1C8AE62742A86000647DFC /* Assets.xcassets in Resources */,
 				DD1C8AE42742A85D00647DFC /* Main.storyboard in Resources */,
+				DD1C8AFE2742ACA800647DFC /* SFUIText-Bold.ttf in Resources */,
+				DD1C8AFB2742AC9C00647DFC /* SFUIText-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,9 +187,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD1C8AE12742A85D00647DFC /* ViewController.swift in Sources */,
+				DD1C8B052742AFEA00647DFC /* CreateJogViewController.swift in Sources */,
+				DD1C8AE12742A85D00647DFC /* LoginScreenViewController.swift in Sources */,
 				DD1C8ADD2742A85D00647DFC /* AppDelegate.swift in Sources */,
 				DD1C8ADF2742A85D00647DFC /* SceneDelegate.swift in Sources */,
+				DD1C8AF62742A9D300647DFC /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
