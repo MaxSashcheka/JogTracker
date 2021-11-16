@@ -9,7 +9,6 @@ import UIKit
 
 class CreateJogViewController: UIViewController {
 
-    
     @IBOutlet weak var backgroundView: UIView!
     
     @IBOutlet weak var distanceLabel: UILabel!
@@ -65,23 +64,31 @@ private extension CreateJogViewController {
     }
     
     private func setupTextFields() {
-        distanceTextField.font = UIFont.sfText(15, .regular)
-        distanceTextField.layer.borderWidth = 1.0
-        distanceTextField.layer.borderColor = UIColor.gray.cgColor
-        distanceTextField.layer.cornerRadius = 8
-        distanceTextField.layer.masksToBounds = true
-        
-        timeTextField.font = UIFont.sfText(15, .regular)
-        timeTextField.layer.borderWidth = 1.0
-        timeTextField.layer.borderColor = UIColor.gray.cgColor
-        timeTextField.layer.cornerRadius = 8
-        timeTextField.layer.masksToBounds = true
-        
-        dateTextField.font = UIFont.sfText(15, .regular)
-        dateTextField.layer.borderWidth = 1.0
-        dateTextField.layer.borderColor = UIColor.gray.cgColor
-        dateTextField.layer.cornerRadius = 8
-        dateTextField.layer.masksToBounds = true
+        [distanceTextField, timeTextField, dateTextField].forEach { textField in
+            textField?.font = UIFont.sfText(15, .regular)
+            textField?.layer.borderWidth = 1.0
+            textField?.layer.borderColor = UIColor.gray.cgColor
+            textField?.layer.cornerRadius = 8
+            textField?.layer.masksToBounds = true
+        }
+    
+//        distanceTextField.font = UIFont.sfText(15, .regular)
+//        distanceTextField.layer.borderWidth = 1.0
+//        distanceTextField.layer.borderColor = UIColor.gray.cgColor
+//        distanceTextField.layer.cornerRadius = 8
+//        distanceTextField.layer.masksToBounds = true
+//
+//        timeTextField.font = UIFont.sfText(15, .regular)
+//        timeTextField.layer.borderWidth = 1.0
+//        timeTextField.layer.borderColor = UIColor.gray.cgColor
+//        timeTextField.layer.cornerRadius = 8
+//        timeTextField.layer.masksToBounds = true
+//
+//        dateTextField.font = UIFont.sfText(15, .regular)
+//        dateTextField.layer.borderWidth = 1.0
+//        dateTextField.layer.borderColor = UIColor.gray.cgColor
+//        dateTextField.layer.cornerRadius = 8
+//        dateTextField.layer.masksToBounds = true
         
         // Setup date toolbar
         let jogingDateToolBar = UIToolbar()
@@ -121,6 +128,8 @@ private extension CreateJogViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
+        let jogsViewController = JogsViewController()
+        navigationController?.pushViewController(jogsViewController, animated: true)
     }
     
 }

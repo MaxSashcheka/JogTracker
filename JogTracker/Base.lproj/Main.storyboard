@@ -17,14 +17,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bearFace" translatesAutoresizingMaskIntoConstraints="NO" id="SNZ-KG-HB8">
-                                <rect key="frame" x="127" y="388" width="160" height="150"/>
+                                <rect key="frame" x="127" y="318" width="160" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="2TL-bl-CsF"/>
                                     <constraint firstAttribute="width" constant="160" id="EmF-RF-tu9"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8q-rp-sBw" customClass="PurpleButton" customModule="JogTracker" customModuleProvider="target">
-                                <rect key="frame" x="132" y="658" width="150" height="60"/>
+                                <rect key="frame" x="132" y="588" width="150" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="77I-BN-lFt"/>
                                     <constraint firstAttribute="width" constant="150" id="G4p-PX-TjF"/>
@@ -40,7 +40,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="SNZ-KG-HB8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FAq-iV-Fo0"/>
-                            <constraint firstItem="SNZ-KG-HB8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="300" id="XRD-AA-LDF"/>
+                            <constraint firstItem="SNZ-KG-HB8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="230" id="XRD-AA-LDF"/>
                             <constraint firstItem="Y8q-rp-sBw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ftW-O8-i3R"/>
                             <constraint firstItem="Y8q-rp-sBw" firstAttribute="top" secondItem="SNZ-KG-HB8" secondAttribute="bottom" constant="120" id="zW9-6m-6DE"/>
                         </constraints>
@@ -52,7 +52,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="502.89855072463774" y="93.75"/>
+            <point key="canvasLocation" x="575" y="94"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="EMd-AE-boi">
@@ -124,52 +124,16 @@
             </objects>
             <point key="canvasLocation" x="1213.0434782608697" y="93.75"/>
         </scene>
-        <!--Empty Jogs View Controller-->
+        <!--Jogs View Controller-->
         <scene sceneID="VG5-fT-nOh">
             <objects>
-                <viewController storyboardIdentifier="EmptyJogsViewController" id="IPv-Ha-gFe" customClass="EmptyJogsViewController" customModule="JogTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EmptyJogsViewController" id="IPv-Ha-gFe" customClass="JogsViewController" customModule="JogTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JDE-2h-KgX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sadFace" translatesAutoresizingMaskIntoConstraints="NO" id="FLM-yA-Jt4">
-                                <rect key="frame" x="157" y="244" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="3I5-XV-Dcs"/>
-                                    <constraint firstAttribute="width" constant="100" id="ErM-yI-ulU"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing is there" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEj-cM-f1Z">
-                                <rect key="frame" x="20" y="384" width="374" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOV-Q4-zfG" customClass="PurpleButton" customModule="JogTracker" customModuleProvider="target">
-                                <rect key="frame" x="60" y="635" width="294" height="65"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="65" id="S9M-6c-Rqm"/>
-                                </constraints>
-                                <state key="normal" title="Create your jog first"/>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="7XF-QF-69k"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="FLM-yA-Jt4" firstAttribute="centerX" secondItem="JDE-2h-KgX" secondAttribute="centerX" id="5Gp-gT-KFM"/>
-                            <constraint firstItem="PEj-cM-f1Z" firstAttribute="leading" secondItem="7XF-QF-69k" secondAttribute="leading" constant="20" id="640-Cs-F6V"/>
-                            <constraint firstItem="NOV-Q4-zfG" firstAttribute="leading" secondItem="7XF-QF-69k" secondAttribute="leading" constant="60" id="JO8-0x-QQh"/>
-                            <constraint firstItem="7XF-QF-69k" firstAttribute="trailing" secondItem="PEj-cM-f1Z" secondAttribute="trailing" constant="20" id="LZa-PW-9rJ"/>
-                            <constraint firstItem="PEj-cM-f1Z" firstAttribute="top" secondItem="FLM-yA-Jt4" secondAttribute="bottom" constant="40" id="aZL-LP-psN"/>
-                            <constraint firstItem="NOV-Q4-zfG" firstAttribute="top" secondItem="PEj-cM-f1Z" secondAttribute="bottom" constant="230" id="f7R-Cc-Qdf"/>
-                            <constraint firstItem="7XF-QF-69k" firstAttribute="trailing" secondItem="NOV-Q4-zfG" secondAttribute="trailing" constant="60" id="iXG-9B-wCV"/>
-                            <constraint firstItem="FLM-yA-Jt4" firstAttribute="top" secondItem="7XF-QF-69k" secondAttribute="top" constant="200" id="nFc-xj-Ggi"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="commentLabel" destination="PEj-cM-f1Z" id="Vbf-zx-Ykf"/>
-                        <outlet property="createFirstJogButton" destination="NOV-Q4-zfG" id="BhB-5G-SSP"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cgm-TP-Gg7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -312,14 +276,14 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="450"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyr-8B-NWn">
-                                                        <rect key="frame" x="25" y="52" width="364" height="20.5"/>
+                                                        <rect key="frame" x="25" y="20" width="364" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="246" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjC-aM-hqS">
-                                                        <rect key="frame" x="25" y="82.5" width="364" height="362.5"/>
-                                                        <mutableString key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique et egestas quis ipsum suspendisse ultrices gravida. Consectetur a erat nam at. Vulputate eu scelerisque felis imperdiet proin fermentum leo. Suscipit adipiscing bibendum est ultricies integer quis auctor elit. Massa massa ultricies mi quis hendrerit. Lorem dolor sed viverra ipsum. Mauris cursus mattis molestie a iaculis at. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur. Magna fermentum iaculis eu non diam phasellus vestibulum. Nisl purus in mollis nunc sed id semper. Amet volutpat consequat mauris nunc congue nisi vitae suscipit.</mutableString>
+                                                        <rect key="frame" x="25" y="50.5" width="364" height="394.5"/>
+                                                        <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique et egestas quis ipsum suspendisse ultrices gravida. Consectetur a erat nam at. Vulputate eu scelerisque felis imperdiet proin fermentum leo. Suscipit adipiscing bibendum est ultricies integer quis auctor elit. Massa massa ultricies mi quis hendrerit. Lorem dolor sed viverra ipsum. Mauris cursus mattis molestie a iaculis at. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur. Magna fermentum iaculis eu non diam phasellus vestibulum. Nisl purus in mollis nunc sed id semper. Amet volutpat consequat mauris nunc congue nisi vitae suscipit.</string>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -332,7 +296,7 @@
                                                     <constraint firstAttribute="height" constant="450" id="EWN-Zk-jbf"/>
                                                     <constraint firstItem="IjC-aM-hqS" firstAttribute="leading" secondItem="Sag-dn-73O" secondAttribute="leading" constant="25" id="Gky-LZ-KZg"/>
                                                     <constraint firstAttribute="bottom" secondItem="IjC-aM-hqS" secondAttribute="bottom" constant="5" id="KsH-VC-SJI"/>
-                                                    <constraint firstItem="Hyr-8B-NWn" firstAttribute="top" secondItem="Sag-dn-73O" secondAttribute="top" constant="52" id="dcu-ny-wfv"/>
+                                                    <constraint firstItem="Hyr-8B-NWn" firstAttribute="top" secondItem="Sag-dn-73O" secondAttribute="top" constant="20" id="dcu-ny-wfv"/>
                                                     <constraint firstAttribute="trailing" secondItem="IjC-aM-hqS" secondAttribute="trailing" constant="25" id="p00-JX-1vo"/>
                                                     <constraint firstItem="IjC-aM-hqS" firstAttribute="top" secondItem="Hyr-8B-NWn" secondAttribute="bottom" constant="10" id="uaX-KO-ASJ"/>
                                                 </constraints>
@@ -342,7 +306,7 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="246" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSc-6b-gA4">
                                                         <rect key="frame" x="25" y="5" width="364" height="360"/>
-                                                        <mutableString key="text">Suscipit adipiscing bibendum est ultricies integer quis auctor elit. Massa massa ultricies mi quis hendrerit. Lorem dolor sed viverra ipsum. Mauris cursus mattis molestie a iaculis at. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur. Magna fermentum iaculis eu non diam phasellus vestibulum. Nisl purus in mollis nunc sed id semper. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur. Suscipit adipiscing bibendum est ultricies integer quis auctor elit. Massa massa ultricies mi quis hendrerit. Lorem dolor sed viverra ipsum. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur.</mutableString>
+                                                        <string key="text">Suscipit adipiscing bibendum est ultricies integer quis auctor elit. Massa massa ultricies mi quis hendrerit. Lorem dolor sed viverra ipsum. Mauris cursus mattis molestie a iaculis at. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur. Magna fermentum iaculis eu non diam phasellus vestibulum. Nisl purus in mollis nunc sed id semper. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur. Suscipit adipiscing bibendum est ultricies integer quis auctor elit. Massa massa ultricies mi quis hendrerit. Lorem dolor sed viverra ipsum. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur.</string>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -362,7 +326,7 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="246" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zpB-Xy-oGa">
                                                         <rect key="frame" x="25" y="0.0" width="364" height="365"/>
-                                                        <mutableString key="text">Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur. Suscipit adipiscing bibendum est ultricies integer quis auctor elit. Massa massa ultricies mi quis hendrerit. Lorem dolor sed viverra ipsum. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur. Suscipit adipiscing bibendum est ultricies integer quis auctor elit. Massa massa ultricies mi quis hendrerit. Lorem dolor sed viverra ipsum. Mauris cursus mattis molestie a iaculis at. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur. Magna fermentum iaculis eu non diam phasellus vestibulum. Nisl purus in mollis nunc sed id semper. </mutableString>
+                                                        <string key="text">Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur. Suscipit adipiscing bibendum est ultricies integer quis auctor elit. Massa massa ultricies mi quis hendrerit. Lorem dolor sed viverra ipsum. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur. Suscipit adipiscing bibendum est ultricies integer quis auctor elit. Massa massa ultricies mi quis hendrerit. Lorem dolor sed viverra ipsum. Mauris cursus mattis molestie a iaculis at. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur. Magna fermentum iaculis eu non diam phasellus vestibulum. Nisl purus in mollis nunc sed id semper. </string>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -380,7 +344,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ij0-Ce-V1N">
                                                 <rect key="frame" x="0.0" y="1190" width="414" height="60"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoBear" translatesAutoresizingMaskIntoConstraints="NO" id="G04-zo-gue">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoBearAppleGreen" translatesAutoresizingMaskIntoConstraints="NO" id="G04-zo-gue">
                                                         <rect key="frame" x="158" y="10" width="98" height="37"/>
                                                     </imageView>
                                                 </subviews>
@@ -446,8 +410,7 @@
     </scenes>
     <resources>
         <image name="bearFace" width="160" height="150"/>
-        <image name="logoBear" width="98" height="37"/>
-        <image name="sadFace" width="85" height="85"/>
+        <image name="logoBearAppleGreen" width="98" height="37"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

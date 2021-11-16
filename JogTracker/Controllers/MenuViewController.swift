@@ -24,7 +24,33 @@ class MenuViewController: UIViewController {
             button.titleLabel?.font = UIFont.sfText(30, .bold)
             button.titleLabel?.tintColor = .black
         }
+        
+        setupNavigationBar()
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barTintColor = .white
+    }
+    
+    private func setupNavigationBar() {
+        
+        navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+
+        let titleView = UIView()
+        titleView.frame = .init(x: 0, y: 0, width: view.frame.width, height: 50)
+        
+        let logoBearImageView = UIImageView(image: UIImage(named: "logoBearAppleGreen"))
+        logoBearImageView.contentMode = .scaleAspectFit
+        titleView.addSubview(logoBearImageView)
+        
+        let dismissButton = UIButton(type: .system)
+        dismissButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        dismissButton.tintColor = .darkGray
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: dismissButton)
+    
+        navigationItem.titleView = titleView
     }
     
     private func updateSelectedButton() {

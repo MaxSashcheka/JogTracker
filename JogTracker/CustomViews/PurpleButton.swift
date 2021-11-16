@@ -9,18 +9,18 @@ import UIKit
 
 class PurpleButton: UIButton {
 
-    init() {
+    init(withCornerRadius radius: CGFloat) {
         super.init(frame: .zero)
-        setup()
+        setup(withRadius: radius)
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setup()
+        setup(withRadius: 30)
     }
     
-    func setup() {
-        layer.cornerRadius = self.frame.height / 2
+    func setup(withRadius radius: CGFloat) {
+        layer.cornerRadius = radius
         layer.borderWidth = 3
         layer.borderColor = UIColor.babyPurple.cgColor
         titleLabel?.font = UIFont.sfText(20, .bold)

@@ -13,9 +13,53 @@ class LoginScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Login"
+        setupNavigationBar()
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        navigationController?.navigationBar.backIndicatorImage = UIImage()
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
+    }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barTintColor = .appleGreen
+    }
+    
+    private func setupNavigationBar() {
+
+        let titleView = UIView()
+        titleView.backgroundColor = .clear
+        titleView.frame = .init(x: 0, y: 0, width: view.frame.width, height: 50)
+        
+        let logoBearImageView = UIImageView(image: UIImage(named: "logoBearWhite"))
+        logoBearImageView.contentMode = .scaleAspectFit
+        titleView.addSubview(logoBearImageView)
+        
+        let filterButton = UIButton(type: .system)
+        filterButton.setImage(UIImage(named: "filterDisabled"), for: .normal)
+        filterButton.tintColor = .white
+
+        let menuButton = UIButton(type: .system)
+        menuButton.setImage(UIImage(named: "menu"), for: .normal)
+        menuButton.tintColor = .white
+
+        let buttonsStackView = UIStackView(arrangedSubviews: [filterButton, menuButton])
+        buttonsStackView.distribution = .equalSpacing
+        buttonsStackView.axis = .horizontal
+        buttonsStackView.alignment = .center
+        buttonsStackView.spacing = 50
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: buttonsStackView)
+        
+        navigationItem.titleView = titleView
+    }
+    
+    @objc private func filterHandler() {
+        print("filterHandler")
     }
 
+    @objc private func menuHandler() {
+        print("menuHandler")
+    }
 
     @IBAction func enterButtonTapped(_ sender: UIButton) {
         let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MenuViewController")
