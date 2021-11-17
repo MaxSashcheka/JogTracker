@@ -12,6 +12,8 @@ extension UIColor {
     static let appleGreen: UIColor = UIColor(red: 126.0 / 255.0, green: 211.0 / 255.0, blue: 33.0 / 255.0, alpha: 1.0)
     static let greyishTwo: UIColor = UIColor(red: 176.0 / 255.0, green: 176.0 / 255.0, blue: 176.0 / 255.0, alpha: 1.0)
     static let sapGreen: UIColor = UIColor(red: 98.0 / 255.0, green: 170.0 / 255.0, blue: 20.0 / 255.0, alpha: 1.0)
+    static let warmGrey: UIColor = UIColor(red: 100.0 / 255.0, green: 100.0 / 255.0, blue: 100.0 / 255.0, alpha: 1.0)
+    static let filterCellBacground: UIColor = UIColor(red: 234.0 / 255.0, green: 234.0 / 255.0, blue: 234.0 / 255.0, alpha: 1.0)
 
 }
 

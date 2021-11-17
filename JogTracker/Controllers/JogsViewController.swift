@@ -57,6 +57,7 @@ class JogsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(JogStatisticTableViewCell.nib(), forCellReuseIdentifier: JogStatisticTableViewCell.reuseIdentifier)
+        tableView.register(FilterTableViewCell.nib(), forCellReuseIdentifier: FilterTableViewCell.reuseIdentifier)
         
         return tableView
     }()
@@ -65,9 +66,13 @@ class JogsViewController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(named: "addButton"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(addJog), for: .touchUpInside)
         
         return button
     }()
+    
+    
+    
     
     var jogs = [Jog]()
     var isFilterEnabled = false
@@ -81,9 +86,8 @@ class JogsViewController: UIViewController {
         view.addSubview(addJogButton)
 
         view.addSubview(jogsTableView)
-        jogsTableView.addSubview(addButton)
+        view.addSubview(addButton)
 
-        
         NSLayoutConstraint.activate([
             sadFaceImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 200),
             sadFaceImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
@@ -97,12 +101,9 @@ class JogsViewController: UIViewController {
             addJogButton.heightAnchor.constraint(equalToConstant: 60),
             addJogButton.widthAnchor.constraint(equalToConstant: 200),
             
-            addButton.bottomAnchor.constraint(equalTo: jogsTableView.bottomAnchor, constant: -60),
-            addButton.trailingAnchor.constraint(equalTo: jogsTableView.trailingAnchor, constant: -60)
-
+            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            addButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30)
         ])
-        
-        setupNavigationBar()
 
         updateUI()
     }
@@ -116,7 +117,7 @@ class JogsViewController: UIViewController {
             switch result {
             case .success(let responce):
                 let jogs = responce.response.jogs
-                
+                self.state = .list
                 if jogs.isEmpty {
                     self.state = .empty
                 } else {
@@ -126,9 +127,14 @@ class JogsViewController: UIViewController {
                 self.updateUI()
                 
             case .failure(let error):
+                self.state = .empty
                 print(error.rawValue)
             }
         }
+    }
+    
+    private func setupTextFields() {
+        
     }
     
     private func setupNavigationBar() {
@@ -151,12 +157,17 @@ class JogsViewController: UIViewController {
         menuButton.tintColor = .white
         menuButton.addTarget(self, action: #selector(menuHandler), for: .touchUpInside)
         
-        let buttonsStackView = UIStackView(arrangedSubviews: [filterButton, menuButton])
-        buttonsStackView.distribution = .equalSpacing
-        buttonsStackView.axis = .horizontal
-        buttonsStackView.alignment = .center
-        buttonsStackView.spacing = 50
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: buttonsStackView)
+        if state == .list {
+            let buttonsStackView = UIStackView(arrangedSubviews: [filterButton, menuButton])
+            buttonsStackView.distribution = .equalSpacing
+            buttonsStackView.axis = .horizontal
+            buttonsStackView.alignment = .center
+            buttonsStackView.spacing = 50
+            navigationItem.rightBarButtonItem = UIBarButtonItem(customView: buttonsStackView)
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButton)
+
+        }
         
         navigationItem.titleView = titleView
     }
@@ -168,18 +179,23 @@ class JogsViewController: UIViewController {
             addJogButton.isHidden = false
             
             jogsTableView.isHidden = true
+            addButton.isHidden = true
+            
         } else {
             sadFaceImageView.isHidden = true
             commentLabel.isHidden = true
             addJogButton.isHidden = true
             
             jogsTableView.isHidden = false
+            addButton.isHidden = false
+
             jogsTableView.reloadData()
         }
+        setupNavigationBar()
+        
     }
     
     @objc func filterHandler(sender: UIButton) {
-        print("filterHandler")
         isFilterEnabled = !isFilterEnabled
         if isFilterEnabled {
             sender.setImage(UIImage(named: "filterEnabled"), for: .normal)
@@ -187,20 +203,32 @@ class JogsViewController: UIViewController {
         } else {
             sender.setImage(UIImage(named: "filterDisabled"), for: .normal)
             sender.tintColor = .white
+        }
+        let indexPathToChange = IndexPath(row: 0, section: 0)
+        
+        jogsTableView.beginUpdates()
+        if isFilterEnabled {
+            jogsTableView.insertRows(at: [indexPathToChange], with: .automatic)
+        } else {
+            jogsTableView.deleteRows(at: [indexPathToChange], with: .automatic)
 
         }
+        jogsTableView.endUpdates()
     }
     
     @objc func menuHandler() {
-        print("menuHandler")
-        state.toggle()
-        updateUI()
-//        navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
 
     }
     
     @objc private func createFirstJog() {
-        let createJogViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CreateJogViewController")
+        let createJogViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CreateEditJogViewController")
+        
+        self.navigationController?.pushViewController(createJogViewController, animated: true)
+    }
+    
+    @objc private func addJog() {
+        let createJogViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CreateEditJogViewController")
         
         self.navigationController?.pushViewController(createJogViewController, animated: true)
     }
@@ -210,18 +238,41 @@ class JogsViewController: UIViewController {
 extension JogsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFilterEnabled {
+            return jogs.count + 1
+        }
         return jogs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: JogStatisticTableViewCell.reuseIdentifier, for: indexPath) as! JogStatisticTableViewCell
+        if isFilterEnabled {
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: FilterTableViewCell.reuseIdentifier, for: indexPath)
+                
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: JogStatisticTableViewCell.reuseIdentifier, for: indexPath) as! JogStatisticTableViewCell
+                
+                let jog = jogs[indexPath.row - 1]
+                cell.setup(withJog: jog)
+                return cell
+            }
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: JogStatisticTableViewCell.reuseIdentifier, for: indexPath) as! JogStatisticTableViewCell
+            
+            let jog = jogs[indexPath.row]
+            cell.setup(withJog: jog)
+            return cell
+        }
         
-        let jog = jogs[indexPath.row]
-        cell.setup(withJog: jog)
-        return cell
+        
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if isFilterEnabled, indexPath.row == 0 {
+            return 60
+        }
         return 120
     }
     

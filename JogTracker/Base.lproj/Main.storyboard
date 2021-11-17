@@ -139,10 +139,37 @@
             </objects>
             <point key="canvasLocation" x="10" y="772"/>
         </scene>
-        <!--Create Jog View Controller-->
+        <!--View Controller-->
+        <scene sceneID="8Es-HS-8ZL">
+            <objects>
+                <viewController id="IGB-vw-kBB" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="t72-2f-i5c">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nRp-U3-bsD">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XKk-2Q-Oan"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nRp-U3-bsD" firstAttribute="top" secondItem="XKk-2Q-Oan" secondAttribute="top" id="UnP-rV-Hn1"/>
+                            <constraint firstItem="nRp-U3-bsD" firstAttribute="trailing" secondItem="XKk-2Q-Oan" secondAttribute="trailing" id="bpv-hz-yQl"/>
+                            <constraint firstItem="nRp-U3-bsD" firstAttribute="bottom" secondItem="XKk-2Q-Oan" secondAttribute="bottom" id="t4i-XS-iln"/>
+                            <constraint firstItem="nRp-U3-bsD" firstAttribute="leading" secondItem="XKk-2Q-Oan" secondAttribute="leading" id="wOH-LB-YGm"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R1C-Q0-UvV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1015.9420289855074" y="785.49107142857144"/>
+        </scene>
+        <!--Create Edit Jog View Controller-->
         <scene sceneID="HVP-VP-b6s">
             <objects>
-                <viewController storyboardIdentifier="CreateJogViewController" id="Cqi-LF-rrf" customClass="CreateJogViewController" customModule="JogTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateEditJogViewController" id="Cqi-LF-rrf" customClass="CreateEditJogViewController" customModule="JogTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iCs-0L-uDf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

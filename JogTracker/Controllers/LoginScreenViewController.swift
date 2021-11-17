@@ -19,6 +19,7 @@ class LoginScreenViewController: UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         navigationController?.navigationBar.backIndicatorImage = UIImage()
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,21 +35,12 @@ class LoginScreenViewController: UIViewController {
         let logoBearImageView = UIImageView(image: UIImage(named: "logoBearWhite"))
         logoBearImageView.contentMode = .scaleAspectFit
         titleView.addSubview(logoBearImageView)
-        
-        let filterButton = UIButton(type: .system)
-        filterButton.setImage(UIImage(named: "filterDisabled"), for: .normal)
-        filterButton.tintColor = .white
 
         let menuButton = UIButton(type: .system)
         menuButton.setImage(UIImage(named: "menu"), for: .normal)
         menuButton.tintColor = .white
 
-        let buttonsStackView = UIStackView(arrangedSubviews: [filterButton, menuButton])
-        buttonsStackView.distribution = .equalSpacing
-        buttonsStackView.axis = .horizontal
-        buttonsStackView.alignment = .center
-        buttonsStackView.spacing = 50
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: buttonsStackView)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButton)
         
         navigationItem.titleView = titleView
     }

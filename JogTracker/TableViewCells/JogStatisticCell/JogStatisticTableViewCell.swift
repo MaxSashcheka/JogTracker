@@ -28,10 +28,12 @@ class JogStatisticTableViewCell: UITableViewCell {
     
     func setup(withJog jog: Jog) {
         dateLabel.text = String(jog.date)
-        distanceLabel.text = "Distance \(jog.distance)"
+        distanceLabel.text = "Distance \(jog.distance) km"
         timeLabel.text = "Time: \(jog.time) min"
         
-        let speed = jog.distance / Float(jog.time) * 1000
+        let jogDistanceInMeteres = jog.distance * 1000
+        let jogTimeInSeconds = Float(jog.time) * 60
+        let speed = jogDistanceInMeteres / jogTimeInSeconds
         let roundedSpeed = round(speed * 10) / 10.0
         
         speedLabel.text = "Speed: \(roundedSpeed) m/s"
@@ -39,5 +41,4 @@ class JogStatisticTableViewCell: UITableViewCell {
     }
     
 }
-
 

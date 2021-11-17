@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CreateJogViewController: UIViewController {
+class CreateEditJogViewController: UIViewController {
 
     @IBOutlet weak var backgroundView: UIView!
     
@@ -38,13 +38,11 @@ class CreateJogViewController: UIViewController {
         setupButtons()
     }
     
-    
-    
 }
 
 // MARK: - Private interface
 
-private extension CreateJogViewController {
+private extension CreateEditJogViewController {
     
     private func setupBackgroundView() {
         backgroundView.backgroundColor = .appleGreen
@@ -72,24 +70,6 @@ private extension CreateJogViewController {
             textField?.layer.masksToBounds = true
         }
     
-//        distanceTextField.font = UIFont.sfText(15, .regular)
-//        distanceTextField.layer.borderWidth = 1.0
-//        distanceTextField.layer.borderColor = UIColor.gray.cgColor
-//        distanceTextField.layer.cornerRadius = 8
-//        distanceTextField.layer.masksToBounds = true
-//
-//        timeTextField.font = UIFont.sfText(15, .regular)
-//        timeTextField.layer.borderWidth = 1.0
-//        timeTextField.layer.borderColor = UIColor.gray.cgColor
-//        timeTextField.layer.cornerRadius = 8
-//        timeTextField.layer.masksToBounds = true
-//
-//        dateTextField.font = UIFont.sfText(15, .regular)
-//        dateTextField.layer.borderWidth = 1.0
-//        dateTextField.layer.borderColor = UIColor.gray.cgColor
-//        dateTextField.layer.cornerRadius = 8
-//        dateTextField.layer.masksToBounds = true
-        
         // Setup date toolbar
         let jogingDateToolBar = UIToolbar()
         jogingDateToolBar.sizeToFit()
@@ -125,11 +105,22 @@ private extension CreateJogViewController {
     
 
     @IBAction func cancelButtonTapped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        let jogsViewController = JogsViewController()
-        navigationController?.pushViewController(jogsViewController, animated: true)
+        
+        guard let distance = distanceTextField.text, distance != "" else { return }
+        guard let time = timeTextField.text, time != "" else { return }
+        guard let date = dateTextField.text, date != "" else { return }
+        
+        
+        let jog = Jog(jogId: 100, userId: "134", distance: Float(distance) ?? 0, time: Int(time) ?? 0, date: TimeInterval(date) ?? 0)
+        NetworkManager.shared.postJog(jog) { error in
+            print(error?.rawValue)
+        }
+        
+        navigationController?.popViewController(animated: true)
     }
     
 }

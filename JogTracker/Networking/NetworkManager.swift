@@ -11,7 +11,7 @@ class NetworkManager {
     
     static let shared = NetworkManager()
     private let baseURL = "https://jogtracker.herokuapp.com/api"
-    
+
     private init() {}
     
     func fetchJogs(completed: @escaping (Result<JogsResponce, JTError>) -> Void) {
@@ -95,6 +95,46 @@ class NetworkManager {
         
     }
     
+    func postJog(_ jogToSave: Jog, completed: @escaping (JTError?) -> Void) {
+        
+        let endPoint = baseURL + "/v1/data/jog"
+        
+        let sessionConfig = URLSessionConfiguration.default
+        let authValue: String? = "Bearer b01da59cec0de2bea6015d66e966e59dd007778998698388e1983f3116b4bb17"
+        sessionConfig.httpAdditionalHeaders = ["Authorization": authValue ?? ""]
+        let session = URLSession(configuration: sessionConfig, delegate: self as? URLSessionDelegate, delegateQueue: nil)
+        
+        guard let url = URL(string: endPoint) else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let parameters = [
+            "date": "2021-10-10",
+            "time": jogToSave.time,
+            "distance": jogToSave.distance
+        ] as [String : Any]
+        
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
+            completed(.invalidSerialization)
+            return
+        }
+        request.httpBody = httpBody
+        
+        session.dataTask(with: request) { data, responce, error in
+            if let _ = error {
+                completed(.unableToComplete)
+                return
+            }
+            
+            guard let responce = responce as? HTTPURLResponse, responce.statusCode == 200 else {
+                completed(.invalidResponce)
+                return
+            }
+        }.resume()
+        
+    }
     
     
 }
