@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD0AFFA9274465AB00D1B0DE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0AFFA8274465AB00D1B0DE /* NetworkManager.swift */; };
+		DD0AFFAC2744661C00D1B0DE /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0AFFAB2744661C00D1B0DE /* Model.swift */; };
+		DD0AFFAF2744666600D1B0DE /* JTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0AFFAE2744666600D1B0DE /* JTError.swift */; };
 		DD1C8ADD2742A85D00647DFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1C8ADC2742A85D00647DFC /* AppDelegate.swift */; };
 		DD1C8ADF2742A85D00647DFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1C8ADE2742A85D00647DFC /* SceneDelegate.swift */; };
 		DD1C8AE12742A85D00647DFC /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1C8AE02742A85D00647DFC /* LoginScreenViewController.swift */; };
@@ -27,6 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD0AFFA8274465AB00D1B0DE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		DD0AFFAB2744661C00D1B0DE /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		DD0AFFAE2744666600D1B0DE /* JTError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTError.swift; sourceTree = "<group>"; };
 		DD1C8AD92742A85D00647DFC /* JogTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JogTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD1C8ADC2742A85D00647DFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD1C8ADE2742A85D00647DFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD0AFFA72744659B00D1B0DE /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				DD0AFFA8274465AB00D1B0DE /* NetworkManager.swift */,
+				DD0AFFAB2744661C00D1B0DE /* Model.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		DD1C8AD02742A85D00647DFC = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +93,7 @@
 		DD1C8ADB2742A85D00647DFC /* JogTracker */ = {
 			isa = PBXGroup;
 			children = (
+				DD0AFFA72744659B00D1B0DE /* Networking */,
 				DDA4247E2743E7B100E3E53D /* TableViewCells */,
 				DD35D0E62742ED8600595515 /* CustomViews */,
 				DD1C8B032742AFA100647DFC /* Controllers */,
@@ -105,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				DD1C8AF52742A9D300647DFC /* Extensions.swift */,
+				DD0AFFAE2744666600D1B0DE /* JTError.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -225,7 +242,10 @@
 				DD1C8B052742AFEA00647DFC /* CreateJogViewController.swift in Sources */,
 				DDA424812743E89900E3E53D /* JogStatisticTableViewCell.swift in Sources */,
 				DD35D0E42742EB3F00595515 /* JogsViewController.swift in Sources */,
+				DD0AFFAC2744661C00D1B0DE /* Model.swift in Sources */,
 				DD35D0E82742EDA400595515 /* PurpleButton.swift in Sources */,
+				DD0AFFA9274465AB00D1B0DE /* NetworkManager.swift in Sources */,
+				DD0AFFAF2744666600D1B0DE /* JTError.swift in Sources */,
 				DD1C8AE12742A85D00647DFC /* LoginScreenViewController.swift in Sources */,
 				DD1C8ADD2742A85D00647DFC /* AppDelegate.swift in Sources */,
 				DD35D0E12742E72D00595515 /* MenuViewController.swift in Sources */,

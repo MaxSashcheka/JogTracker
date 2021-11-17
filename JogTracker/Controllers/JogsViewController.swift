@@ -61,7 +61,15 @@ class JogsViewController: UIViewController {
         return tableView
     }()
     
-    let jogsCount = 5
+    lazy var addButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "addButton"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    var jogs = [Jog]()
     var isFilterEnabled = false
     var state: State = .empty
 
@@ -73,6 +81,7 @@ class JogsViewController: UIViewController {
         view.addSubview(addJogButton)
 
         view.addSubview(jogsTableView)
+        jogsTableView.addSubview(addButton)
 
         
         NSLayoutConstraint.activate([
@@ -86,15 +95,40 @@ class JogsViewController: UIViewController {
             addJogButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 60),
             addJogButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -60),
             addJogButton.heightAnchor.constraint(equalToConstant: 60),
-            addJogButton.widthAnchor.constraint(equalToConstant: 200)
+            addJogButton.widthAnchor.constraint(equalToConstant: 200),
+            
+            addButton.bottomAnchor.constraint(equalTo: jogsTableView.bottomAnchor, constant: -60),
+            addButton.trailingAnchor.constraint(equalTo: jogsTableView.trailingAnchor, constant: -60)
+
         ])
         
         setupNavigationBar()
 
+        updateUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.barTintColor = .appleGreen
+        
+        NetworkManager.shared.fetchJogs { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let responce):
+                let jogs = responce.response.jogs
+                
+                if jogs.isEmpty {
+                    self.state = .empty
+                } else {
+                    self.state = .list
+                    self.jogs = jogs
+                }
+                self.updateUI()
+                
+            case .failure(let error):
+                print(error.rawValue)
+            }
+        }
     }
     
     private func setupNavigationBar() {
@@ -132,11 +166,15 @@ class JogsViewController: UIViewController {
             sadFaceImageView.isHidden = false
             commentLabel.isHidden = false
             addJogButton.isHidden = false
+            
+            jogsTableView.isHidden = true
         } else {
-
             sadFaceImageView.isHidden = true
             commentLabel.isHidden = true
             addJogButton.isHidden = true
+            
+            jogsTableView.isHidden = false
+            jogsTableView.reloadData()
         }
     }
     
@@ -172,12 +210,14 @@ class JogsViewController: UIViewController {
 extension JogsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return jogsCount
+        return jogs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: JogStatisticTableViewCell.reuseIdentifier, for: indexPath) as! JogStatisticTableViewCell
         
+        let jog = jogs[indexPath.row]
+        cell.setup(withJog: jog)
         return cell
     }
     
@@ -186,6 +226,22 @@ extension JogsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            
+            let jogId = jogs[indexPath.row].jogId
+            NetworkManager.shared.deleteJog(withId: jogId)
+            jogs.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            tableView.endUpdates()
+        }
+    }
 }
 
 
