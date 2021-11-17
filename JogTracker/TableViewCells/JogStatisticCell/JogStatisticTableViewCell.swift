@@ -36,16 +36,6 @@ class JogStatisticTableViewCell: UITableViewCell {
         formatter.dateFormat = "dd.MM.YYYY"
         let jogDateString = formatter.string(from: jogDate)
         dateLabel.text = jogDateString
-    
-        
-        let jogDistanceInMeteres = jog.distance * 1000
-        let jogTimeInSeconds = Float(jog.time) * 60
-        let speed = jogDistanceInMeteres / jogTimeInSeconds
-        let roundedSpeed = round(speed * 10) / 10.0
-        
-        distanceLabel.attributedText = "Distance: \(jog.distance) km".attributedText(mediumString: "Distance:")
-        speedLabel.attributedText = "Speed: \(roundedSpeed) m/s".attributedText(mediumString: "Speed")
-
         
         let hours = jog.time / 60
         let leftMinutes = jog.time % 60
@@ -56,6 +46,18 @@ class JogStatisticTableViewCell: UITableViewCell {
             timeLabel.attributedText = "Time: \(hours) hour \(leftMinutes) min".attributedText(mediumString: "Time:")
         } else {
             timeLabel.attributedText = "Time: \(hours) hours \(leftMinutes) min".attributedText(mediumString: "Time:")
+        }
+        
+        let jogDistanceInMeteres = jog.distance * 1000
+        let jogTimeInSeconds = Float(jog.time) * 60
+        let speed = jogDistanceInMeteres / jogTimeInSeconds
+        let roundedSpeed = round(speed * 10) / 10.0
+        distanceLabel.attributedText = "Distance: \(jog.distance) km".attributedText(mediumString: "Distance:")
+        if jog.distance == 0 || jog.time == 0 {
+            speedLabel.attributedText = "Speed: uncalculable".attributedText(mediumString: "Speed")
+
+        } else {
+            speedLabel.attributedText = "Speed: \(roundedSpeed) m/s".attributedText(mediumString: "Speed")
         }
         
     }

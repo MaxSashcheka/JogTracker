@@ -47,7 +47,7 @@ class JogsViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Create your first jog", for: .normal)
         button.setTitleColor(.babyPurple, for: .normal)
-        button.addTarget(self, action: #selector(addJog), for: .touchUpInside)
+        button.addTarget(self, action: #selector(createJog), for: .touchUpInside)
 
         return button
     }()
@@ -56,6 +56,7 @@ class JogsViewController: UIViewController {
         let tableView = UITableView(frame: view.bounds)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorInset = .zero
         tableView.register(JogStatisticTableViewCell.nib(), forCellReuseIdentifier: JogStatisticTableViewCell.reuseIdentifier)
         tableView.register(FilterTableViewCell.nib(), forCellReuseIdentifier: FilterTableViewCell.reuseIdentifier)
         
@@ -66,7 +67,7 @@ class JogsViewController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(named: "addButton"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(addJog), for: .touchUpInside)
+        button.addTarget(self, action: #selector(createJog), for: .touchUpInside)
         
         return button
     }()
@@ -104,7 +105,7 @@ extension JogsViewController {
             addJogButton.heightAnchor.constraint(equalToConstant: 60),
             addJogButton.widthAnchor.constraint(equalToConstant: 200),
             
-            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10),
             addButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30)
         ])
 
@@ -221,9 +222,9 @@ private extension JogsViewController {
         jogsTableView.endUpdates()
     }
     
-    @objc func addJog() {
+    @objc func createJog() {
         let createJogViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CreateEditJogViewController")
-        
+    
         self.navigationController?.pushViewController(createJogViewController, animated: true)
     }
     
@@ -289,6 +290,20 @@ extension JogsViewController: UITableViewDelegate, UITableViewDataSource {
             
             tableView.endUpdates()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let editJogViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CreateEditJogViewController") as! CreateEditJogViewController
+        
+        if filterEnabled {
+            editJogViewController.selectedJog = jogs[indexPath.row - 1]
+        } else {
+            editJogViewController.selectedJog = jogs[indexPath.row ]
+        }
+        
+        self.navigationController?.pushViewController(editJogViewController, animated: true)
+        
     }
 }
 

@@ -14,6 +14,8 @@ class NetworkManager {
 
     private init() {}
     
+    // MARK: - Get
+    
     func fetchJogs(completed: @escaping (Result<JogsResponce, JTError>) -> Void) {
         
         let endPoint = baseURL + "/v1/data/sync"
@@ -55,6 +57,8 @@ class NetworkManager {
         }.resume()
     }
     
+    // MARK: - Delete
+    
     func deleteJog(withId jogId: Int) {
         
         let endPoint = baseURL + "/v1/data/jog"
@@ -95,6 +99,8 @@ class NetworkManager {
         
     }
     
+    // MARK: - Post
+    
     func postJog(_ jogToSave: Jog, completed: @escaping (JTError?) -> Void) {
         
         let endPoint = baseURL + "/v1/data/jog"
@@ -110,10 +116,65 @@ class NetworkManager {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        let jogDate = Date(timeIntervalSince1970: jogToSave.date)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let jogDateString = formatter.string(from: jogDate)
+    
         let parameters = [
-            "date": "2021-10-10",
+            "date": jogDateString,
             "time": jogToSave.time,
             "distance": jogToSave.distance
+        ] as [String : Any]
+        
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
+            completed(.invalidSerialization)
+            return
+        }
+        request.httpBody = httpBody
+        
+        session.dataTask(with: request) { data, responce, error in
+            if let _ = error {
+                completed(.unableToComplete)
+                return
+            }
+            
+            guard let responce = responce as? HTTPURLResponse, responce.statusCode == 200 else {
+                completed(.invalidResponce)
+                return
+            }
+        }.resume()
+        
+    }
+    
+    // MARK: - Update
+    
+    func updateJog(_ jogToUpdate: Jog, completed: @escaping (JTError?) -> Void) {
+        
+        let endPoint = baseURL + "/v1/data/jog"
+        
+        let sessionConfig = URLSessionConfiguration.default
+        let authValue: String? = "Bearer b01da59cec0de2bea6015d66e966e59dd007778998698388e1983f3116b4bb17"
+        sessionConfig.httpAdditionalHeaders = ["Authorization": authValue ?? ""]
+        let session = URLSession(configuration: sessionConfig, delegate: self as? URLSessionDelegate, delegateQueue: nil)
+        
+        guard let url = URL(string: endPoint) else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jogDate = Date(timeIntervalSince1970: jogToUpdate.date)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let jogDateString = formatter.string(from: jogDate)
+    
+        let parameters = [
+            "date": jogDateString,
+            "time": jogToUpdate.time,
+            "distance": jogToUpdate.distance,
+            "jog_id": jogToUpdate.jogId,
+            "user_id": "134"
         ] as [String : Any]
         
         guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {

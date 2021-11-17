@@ -29,6 +29,8 @@ class CreateEditJogViewController: UIViewController {
         return datePicker
     }()
     
+    var selectedJog: Jog?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,6 +39,7 @@ class CreateEditJogViewController: UIViewController {
         setupTextFields()
         setupButtons()
         setupTapGesture()
+        fillTextFieldsWithJog()
     }
     
 }
@@ -45,24 +48,39 @@ class CreateEditJogViewController: UIViewController {
 
 private extension CreateEditJogViewController {
     
-    private func setupBackgroundView() {
+    func fillTextFieldsWithJog() {
+        if let jog = selectedJog {
+            
+            distanceTextField.text = String(Int(jog.distance))
+            timeTextField.text = String(jog.time)
+            
+            let date = Date(timeIntervalSince1970: jog.date)
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd.MM.yyyy"
+            jogDatePicker.date = date
+            
+            dateTextField.text = formatter.string(from: date)
+        }
+    }
+    
+    func setupBackgroundView() {
         backgroundView.backgroundColor = .appleGreen
         backgroundView.layer.cornerRadius = 30
         
-        backgroundView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.33).cgColor
+        backgroundView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4).cgColor
         backgroundView.layer.shadowOffset = .zero
         backgroundView.layer.shadowOpacity = 1.0
-        backgroundView.layer.shadowRadius = 10.0
+        backgroundView.layer.shadowRadius = 5.0
     }
     
-    private func setupLabels() {
+    func setupLabels() {
         distanceLabel.font = UIFont.sfText(15, .regular)
         dateLabel.font = UIFont.sfText(15, .regular)
         timeLabel.font = UIFont.sfText(15, .regular)
 
     }
     
-    private func setupTextFields() {
+    func setupTextFields() {
         [distanceTextField, timeTextField, dateTextField].forEach { textField in
             textField?.delegate = self
             textField?.font = UIFont.sfText(15, .regular)
@@ -84,7 +102,7 @@ private extension CreateEditJogViewController {
 
     }
     
-    private func setupButtons() {
+    func setupButtons() {
         cancelButton.setImage(UIImage(named: "cancelButton"), for: .normal)
         cancelButton.tintColor = .white
         
@@ -109,7 +127,7 @@ private extension CreateEditJogViewController {
     
     @objc func saveJogingdate() {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "dd.MM.yyyy"
         dateTextField.text = formatter.string(from: jogDatePicker.date)
         
         view.endEditing(true)
@@ -124,13 +142,24 @@ private extension CreateEditJogViewController {
         
         guard let distance = distanceTextField.text, distance != "" else { return }
         guard let time = timeTextField.text, time != "" else { return }
-        guard let date = dateTextField.text, date != "" else { return }
+        guard let dateString = dateTextField.text, dateString != "" else { return }
         
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        let date = formatter.date(from: dateString)
         
-        let jog = Jog(jogId: 100, userId: "134", distance: Float(distance) ?? 0, time: Int(time) ?? 0, date: TimeInterval(date) ?? 0)
-        NetworkManager.shared.postJog(jog) { error in
-            print(error?.rawValue)
+        let jog = Jog(jogId: selectedJog?.jogId ?? 0, userId: "134", distance: Float(distance) ?? 0, time: Int(time) ?? 0, date: TimeInterval(date?.timeIntervalSince1970 ?? 0))
+        
+        if selectedJog == nil {
+            NetworkManager.shared.postJog(jog) { error in
+                print(error?.rawValue)
+            }
+        } else {
+            NetworkManager.shared.updateJog(jog) { error in
+                print(error?.rawValue)
+            }
         }
+        
         
         navigationController?.popViewController(animated: true)
     }

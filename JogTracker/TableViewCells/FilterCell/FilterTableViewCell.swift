@@ -47,11 +47,14 @@ class FilterTableViewCell: UITableViewCell {
     
     func setupTextFields() {
         [dateFromTextField, dateToTextField].forEach { textField in
-            textField?.font = UIFont.sfText(13, .regular)
+            textField?.font = UIFont.sfText(13, .medium)
             textField?.layer.borderWidth = 1.0
             textField?.layer.borderColor = UIColor.warmGrey.cgColor
             textField?.layer.cornerRadius = 10
             textField?.layer.masksToBounds = true
+            
+            textField?.textColor = .warmGrey
+            textField?.textAlignment = .center
         }
         
         //dateFromTextField
@@ -72,6 +75,8 @@ class FilterTableViewCell: UITableViewCell {
         
         dateToTextField.inputView = dateToPicker
         dateToTextField.inputAccessoryView = dateToToolBar
+        
+        
     }
     
     @objc private func saveDateFrom() {
