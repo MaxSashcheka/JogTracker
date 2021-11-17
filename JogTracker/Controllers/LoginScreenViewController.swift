@@ -39,23 +39,20 @@ class LoginScreenViewController: UIViewController {
         let menuButton = UIButton(type: .system)
         menuButton.setImage(UIImage(named: "menu"), for: .normal)
         menuButton.tintColor = .white
+        menuButton.addTarget(self, action: #selector(openMenuController), for: .touchUpInside)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButton)
         
         navigationItem.titleView = titleView
     }
-    
-    @objc private func filterHandler() {
-        print("filterHandler")
-    }
 
-    @objc private func menuHandler() {
-        print("menuHandler")
+    @objc private func openMenuController() {
+        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MenuViewController")
+        self.navigationController?.pushViewController(menuViewController, animated: true)
     }
 
     @IBAction func enterButtonTapped(_ sender: UIButton) {
-        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MenuViewController")
-        self.navigationController?.pushViewController(menuViewController, animated: true)
+        openMenuController()
     }
 }
 

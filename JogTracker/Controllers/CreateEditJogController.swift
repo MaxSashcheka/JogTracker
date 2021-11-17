@@ -36,6 +36,7 @@ class CreateEditJogViewController: UIViewController {
         setupLabels()
         setupTextFields()
         setupButtons()
+        setupTapGesture()
     }
     
 }
@@ -63,6 +64,7 @@ private extension CreateEditJogViewController {
     
     private func setupTextFields() {
         [distanceTextField, timeTextField, dateTextField].forEach { textField in
+            textField?.delegate = self
             textField?.font = UIFont.sfText(15, .regular)
             textField?.layer.borderWidth = 1.0
             textField?.layer.borderColor = UIColor.gray.cgColor
@@ -95,6 +97,16 @@ private extension CreateEditJogViewController {
         
     }
     
+    func setupTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self,
+                         action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+    
     @objc func saveJogingdate() {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -121,6 +133,17 @@ private extension CreateEditJogViewController {
         }
         
         navigationController?.popViewController(animated: true)
+    }
+    
+}
+
+// MARK: - UITextFieldDelegate
+
+extension CreateEditJogViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 }

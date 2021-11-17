@@ -47,7 +47,7 @@ class JogsViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Create your first jog", for: .normal)
         button.setTitleColor(.babyPurple, for: .normal)
-        button.addTarget(self, action: #selector(createFirstJog), for: .touchUpInside)
+        button.addTarget(self, action: #selector(addJog), for: .touchUpInside)
 
         return button
     }()
@@ -71,13 +71,16 @@ class JogsViewController: UIViewController {
         return button
     }()
     
-    
-    
-    
     var jogs = [Jog]()
-    var isFilterEnabled = false
     var state: State = .empty
+    var filterEnabled = false
 
+}
+
+// MARK: - ViewController overrides
+
+extension JogsViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -117,7 +120,7 @@ class JogsViewController: UIViewController {
             switch result {
             case .success(let responce):
                 let jogs = responce.response.jogs
-                self.state = .list
+            
                 if jogs.isEmpty {
                     self.state = .empty
                 } else {
@@ -133,11 +136,13 @@ class JogsViewController: UIViewController {
         }
     }
     
-    private func setupTextFields() {
-        
-    }
+}
+
+// MARK: - Private interface
+
+private extension JogsViewController {
     
-    private func setupNavigationBar() {
+    func setupNavigationBar() {
 
         let titleView = UIView()
         titleView.backgroundColor = .clear
@@ -172,7 +177,7 @@ class JogsViewController: UIViewController {
         navigationItem.titleView = titleView
     }
     
-    private func updateUI() {
+    func updateUI() {
         if state == .empty {
             sadFaceImageView.isHidden = false
             commentLabel.isHidden = false
@@ -196,8 +201,8 @@ class JogsViewController: UIViewController {
     }
     
     @objc func filterHandler(sender: UIButton) {
-        isFilterEnabled = !isFilterEnabled
-        if isFilterEnabled {
+        filterEnabled = !filterEnabled
+        if filterEnabled {
             sender.setImage(UIImage(named: "filterEnabled"), for: .normal)
             sender.tintColor = .sapGreen
         } else {
@@ -207,7 +212,7 @@ class JogsViewController: UIViewController {
         let indexPathToChange = IndexPath(row: 0, section: 0)
         
         jogsTableView.beginUpdates()
-        if isFilterEnabled {
+        if filterEnabled {
             jogsTableView.insertRows(at: [indexPathToChange], with: .automatic)
         } else {
             jogsTableView.deleteRows(at: [indexPathToChange], with: .automatic)
@@ -216,36 +221,30 @@ class JogsViewController: UIViewController {
         jogsTableView.endUpdates()
     }
     
+    @objc func addJog() {
+        let createJogViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CreateEditJogViewController")
+        
+        self.navigationController?.pushViewController(createJogViewController, animated: true)
+    }
+    
     @objc func menuHandler() {
         navigationController?.popViewController(animated: true)
-
     }
-    
-    @objc private func createFirstJog() {
-        let createJogViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CreateEditJogViewController")
-        
-        self.navigationController?.pushViewController(createJogViewController, animated: true)
-    }
-    
-    @objc private func addJog() {
-        let createJogViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CreateEditJogViewController")
-        
-        self.navigationController?.pushViewController(createJogViewController, animated: true)
-    }
-   
 }
+
+// MARK: - UITableViewDelegate & UITableViewDataSource
 
 extension JogsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFilterEnabled {
+        if filterEnabled {
             return jogs.count + 1
         }
         return jogs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if isFilterEnabled {
+        if filterEnabled {
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: FilterTableViewCell.reuseIdentifier, for: indexPath)
                 
@@ -265,12 +264,10 @@ extension JogsViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         
-        
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if isFilterEnabled, indexPath.row == 0 {
+        if filterEnabled, indexPath.row == 0 {
             return 60
         }
         return 120

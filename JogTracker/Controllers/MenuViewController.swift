@@ -47,6 +47,7 @@ class MenuViewController: UIViewController {
         let dismissButton = UIButton(type: .system)
         dismissButton.setImage(UIImage(systemName: "xmark"), for: .normal)
         dismissButton.tintColor = .darkGray
+        dismissButton.addTarget(self, action: #selector(backToLoginController), for: .touchUpInside)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: dismissButton)
     
@@ -61,6 +62,10 @@ class MenuViewController: UIViewController {
             }
             buttons[index].titleLabel?.tintColor = .black
         }
+    }
+    
+    @objc func backToLoginController() {
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func jogsButtonTapped(_ sender: UIButton) {

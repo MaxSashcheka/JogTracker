@@ -29,36 +29,20 @@ extension UIFont {
     }
 }
 
-
-extension UIViewController {
-    
-    func createCustomNavigationBar() {
-        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-    }
-    
-    func createCustomTitleView() -> UIView {
-        let view = UIView()
-        view.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-        view.backgroundColor = .red
-        let logoImageView = UIImageView()
-        logoImageView.image = UIImage(named: "logoBear")
-
-        view.addSubview(logoImageView)
-        
-        return view
-    }
-    
-    func createCustomButton(imageName: String, selector: Selector) -> UIBarButtonItem {
-
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(named: imageName), for: .normal)
-        button.tintColor = .white
-        button.imageView?.contentMode = .scaleAspectFit
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
-        button.addTarget(self, action: selector, for: .touchUpInside)
-        
-        let menuBarItem = UIBarButtonItem(customView: button)
-        return menuBarItem
+extension String {
+    func attributedText(mediumString: String) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString(string: self,
+                                                         attributes:
+                                                            [NSAttributedString.Key.font: UIFont.sfText(15, .medium),
+                                                             NSAttributedString.Key.foregroundColor: UIColor.warmGrey
+                                                         ])
+        let boldFontAttribute: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.font: UIFont.sfText(15, .medium),
+            NSAttributedString.Key.foregroundColor: UIColor.black
+        ]
+        let range = (self as NSString).range(of: mediumString)
+        attributedString.addAttributes(boldFontAttribute, range: range)
+        return attributedString
     }
 }
+

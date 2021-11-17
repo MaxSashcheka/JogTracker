@@ -16,33 +16,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bearFace" translatesAutoresizingMaskIntoConstraints="NO" id="SNZ-KG-HB8">
-                                <rect key="frame" x="127" y="318" width="160" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="2TL-bl-CsF"/>
-                                    <constraint firstAttribute="width" constant="160" id="EmF-RF-tu9"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8q-rp-sBw" customClass="PurpleButton" customModule="JogTracker" customModuleProvider="target">
-                                <rect key="frame" x="132" y="588" width="150" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="77I-BN-lFt"/>
-                                    <constraint firstAttribute="width" constant="150" id="G4p-PX-TjF"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
-                                <state key="normal" title="Let me in"/>
-                                <connections>
-                                    <action selector="enterButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I3V-K6-BNg"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="o51-Ey-zUc">
+                                <rect key="frame" x="127" y="293" width="160" height="310"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bearFace" translatesAutoresizingMaskIntoConstraints="NO" id="SNZ-KG-HB8">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="2TL-bl-CsF"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8q-rp-sBw" customClass="PurpleButton" customModule="JogTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="250" width="160" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="77I-BN-lFt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                        <state key="normal" title="Let me in"/>
+                                        <connections>
+                                            <action selector="enterButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I3V-K6-BNg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="SNZ-KG-HB8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FAq-iV-Fo0"/>
-                            <constraint firstItem="SNZ-KG-HB8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="230" id="XRD-AA-LDF"/>
-                            <constraint firstItem="Y8q-rp-sBw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ftW-O8-i3R"/>
-                            <constraint firstItem="Y8q-rp-sBw" firstAttribute="top" secondItem="SNZ-KG-HB8" secondAttribute="bottom" constant="120" id="zW9-6m-6DE"/>
+                            <constraint firstItem="o51-Ey-zUc" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="aXh-ga-t9S"/>
+                            <constraint firstItem="o51-Ey-zUc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kri-Hx-EVb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jz8-kM-sHj"/>

@@ -49,7 +49,7 @@ class InfoViewController: UIViewController {
         menuButton.addTarget(self, action: #selector(backToMenu), for: .touchUpInside)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButton)
-        
+        navigationItem.backBarButtonItem?.image = UIImage(named: "logoBearWhite")
         navigationItem.titleView = titleView
     }
     
