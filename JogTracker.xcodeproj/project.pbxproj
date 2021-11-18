@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -33,6 +33,7 @@
 		DD3BEB0E2746B0CA0061AACF /* WeekStatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3BEB0D2746B0CA0061AACF /* WeekStatsModel.swift */; };
 		DD3BEB162746F6A70061AACF /* MenuListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3BEB152746F6A70061AACF /* MenuListTableViewController.swift */; };
 		DD3BEB192746F8DD0061AACF /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3BEB182746F8DD0061AACF /* FeedbackViewController.swift */; };
+		DD3BEB362747148E0061AACF /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = DD3BEB352747148E0061AACF /* SideMenu */; };
 		DD5DFC1527454E4E007F5B14 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5DFC1327454E4E007F5B14 /* FilterTableViewCell.swift */; };
 		DD5DFC1627454E4E007F5B14 /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5DFC1427454E4E007F5B14 /* FilterTableViewCell.xib */; };
 		DDA424812743E89900E3E53D /* JogStatisticTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA4247F2743E89900E3E53D /* JogStatisticTableViewCell.swift */; };
@@ -81,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD3BEB362747148E0061AACF /* SideMenu in Frameworks */,
 				9F83539DC64D3840473E2334 /* Pods_JogTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,6 +261,7 @@
 			);
 			name = JogTracker;
 			packageProductDependencies = (
+				DD3BEB352747148E0061AACF /* SideMenu */,
 			);
 			productName = JogTracker;
 			productReference = DD1C8AD92742A85D00647DFC /* JogTracker.app */;
@@ -288,6 +291,7 @@
 			);
 			mainGroup = DD1C8AD02742A85D00647DFC;
 			packageReferences = (
+				DD3BEB342747148E0061AACF /* XCRemoteSwiftPackageReference "SideMenu" */,
 			);
 			productRefGroup = DD1C8ADA2742A85D00647DFC /* Products */;
 			projectDirPath = "";
@@ -589,6 +593,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DD3BEB342747148E0061AACF /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DD3BEB352747148E0061AACF /* SideMenu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD3BEB342747148E0061AACF /* XCRemoteSwiftPackageReference "SideMenu" */;
+			productName = SideMenu;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DD1C8AD12742A85D00647DFC /* Project object */;
 }
