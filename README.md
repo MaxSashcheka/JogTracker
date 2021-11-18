@@ -5,9 +5,9 @@
 * возможность быстрее разработать приложение
 * MVC продвигается Apple
 <p>
-<img src="https://user-images.githubusercontent.com/55757649/142511870-801eea4a-1407-4e49-8eef-4673aaaa8024.png" width="300">
-<img src="https://user-images.githubusercontent.com/55757649/142511878-a95e4c5d-7d70-452f-a178-18d6f72a6723.png" width="300">
-<img src="https://user-images.githubusercontent.com/55757649/142511954-d35adb56-b2b6-45e9-8ad3-26313ad3e0dd.png" width="300">
+<img src="https://user-images.githubusercontent.com/55757649/142511870-801eea4a-1407-4e49-8eef-4673aaaa8024.png" width="200">
+<img src="https://user-images.githubusercontent.com/55757649/142511878-a95e4c5d-7d70-452f-a178-18d6f72a6723.png" width="200">
+<img src="https://user-images.githubusercontent.com/55757649/142511954-d35adb56-b2b6-45e9-8ad3-26313ad3e0dd.png" width="200">
 </p>
 Реализовал опциональные задания. <br>
 Для перехода в left side menu (для открытия формы отправки feedback) необходимо в меню нажать по кнопке "Contact us". <br>
