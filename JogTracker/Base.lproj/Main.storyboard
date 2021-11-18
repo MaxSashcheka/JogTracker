@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zmy-DP-0Oz">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -310,8 +311,8 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="246" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjC-aM-hqS">
-                                                        <rect key="frame" x="25" y="50.5" width="364" height="394.5"/>
-                                                        <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique et egestas quis ipsum suspendisse ultrices gravida. Consectetur a erat nam at. Vulputate eu scelerisque felis imperdiet proin fermentum leo. Suscipit adipiscing bibendum est ultricies integer quis auctor elit. Massa massa ultricies mi quis hendrerit. Lorem dolor sed viverra ipsum. Mauris cursus mattis molestie a iaculis at. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur. Magna fermentum iaculis eu non diam phasellus vestibulum. Nisl purus in mollis nunc sed id semper. Amet volutpat consequat mauris nunc congue nisi vitae suscipit.</string>
+                                                        <rect key="frame" x="25" y="40.5" width="364" height="404.5"/>
+                                                        <mutableString key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique et egestas quis ipsum suspendisse ultrices gravida. Consectetur a erat nam at. Vulputate eu scelerisque felis imperdiet proin fermentum leo. Suscipit adipiscing bibendum est ultricies integer quis auctor elit. Massa massa ultricies mi quis hendrerit. Lorem dolor sed viverra ipsum. Mauris cursus mattis molestie a iaculis at. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur. Magna fermentum iaculis eu non diam phasellus vestibulum. Nisl purus in mollis nunc sed id semper. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Mauris cursus mattis molestie a iaculis at. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur. </mutableString>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -326,7 +327,7 @@
                                                     <constraint firstAttribute="bottom" secondItem="IjC-aM-hqS" secondAttribute="bottom" constant="5" id="KsH-VC-SJI"/>
                                                     <constraint firstItem="Hyr-8B-NWn" firstAttribute="top" secondItem="Sag-dn-73O" secondAttribute="top" constant="20" id="dcu-ny-wfv"/>
                                                     <constraint firstAttribute="trailing" secondItem="IjC-aM-hqS" secondAttribute="trailing" constant="25" id="p00-JX-1vo"/>
-                                                    <constraint firstItem="IjC-aM-hqS" firstAttribute="top" secondItem="Hyr-8B-NWn" secondAttribute="bottom" constant="10" id="uaX-KO-ASJ"/>
+                                                    <constraint firstItem="IjC-aM-hqS" firstAttribute="top" secondItem="Hyr-8B-NWn" secondAttribute="bottom" id="uaX-KO-ASJ"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5gG-LK-Dxd">

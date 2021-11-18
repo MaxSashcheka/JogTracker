@@ -22,6 +22,7 @@ class CreateEditJogViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
+    @available(iOS 13.4, *)
     lazy var jogDatePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = UIDatePickerStyle.wheels
@@ -31,10 +32,15 @@ class CreateEditJogViewController: UIViewController {
     
     var selectedJog: Jog?
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        navigationController?.navigationBar.backIndicatorImage = UIImage()
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
 
         setupBackgroundView()
         setupLabels()
@@ -90,7 +96,9 @@ private extension CreateEditJogViewController {
             let date = Date(timeIntervalSince1970: jog.date)
             let formatter = DateFormatter()
             formatter.dateFormat = "dd.MM.yyyy"
-            jogDatePicker.date = date
+            if #available(iOS 13.4, *) {
+                jogDatePicker.date = date
+            }
             
             dateTextField.text = formatter.string(from: date)
         }
@@ -130,7 +138,9 @@ private extension CreateEditJogViewController {
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         jogingDateToolBar.setItems([flexSpace, jogingDateDoneButton], animated: true)
         
-        dateTextField.inputView = jogDatePicker
+        if #available(iOS 13.4, *) {
+            dateTextField.inputView = jogDatePicker
+        }
         dateTextField.inputAccessoryView = jogingDateToolBar
 
     }
@@ -161,7 +171,9 @@ private extension CreateEditJogViewController {
     @objc func saveJogingdate() {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
-        dateTextField.text = formatter.string(from: jogDatePicker.date)
+        if #available(iOS 13.4, *) {
+            dateTextField.text = formatter.string(from: jogDatePicker.date)
+        }
         
         view.endEditing(true)
     }

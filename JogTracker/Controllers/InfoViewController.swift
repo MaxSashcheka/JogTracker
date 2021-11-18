@@ -30,6 +30,9 @@ class InfoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.barTintColor = .appleGreen
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        navigationController?.navigationBar.backIndicatorImage = UIImage()
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
 
     }
     

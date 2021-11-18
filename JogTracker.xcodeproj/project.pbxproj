@@ -27,6 +27,10 @@
 		DD35D0E42742EB3F00595515 /* JogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D0E32742EB3F00595515 /* JogsViewController.swift */; };
 		DD35D0E82742EDA400595515 /* PurpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD35D0E72742EDA400595515 /* PurpleButton.swift */; };
 		DD3BEB00274680280061AACF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3BEAFF274680280061AACF /* LoginModel.swift */; };
+		DD3BEB052746AC5E0061AACF /* WeekStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3BEB042746AC5E0061AACF /* WeekStatsViewController.swift */; };
+		DD3BEB0A2746AC7D0061AACF /* WeekStatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3BEB082746AC7D0061AACF /* WeekStatsTableViewCell.swift */; };
+		DD3BEB0B2746AC7D0061AACF /* WeekStatsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD3BEB092746AC7D0061AACF /* WeekStatsTableViewCell.xib */; };
+		DD3BEB0E2746B0CA0061AACF /* WeekStatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3BEB0D2746B0CA0061AACF /* WeekStatsModel.swift */; };
 		DD5DFC1527454E4E007F5B14 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5DFC1327454E4E007F5B14 /* FilterTableViewCell.swift */; };
 		DD5DFC1627454E4E007F5B14 /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5DFC1427454E4E007F5B14 /* FilterTableViewCell.xib */; };
 		DDA424812743E89900E3E53D /* JogStatisticTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA4247F2743E89900E3E53D /* JogStatisticTableViewCell.swift */; };
@@ -58,6 +62,10 @@
 		DD35D0E32742EB3F00595515 /* JogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogsViewController.swift; sourceTree = "<group>"; };
 		DD35D0E72742EDA400595515 /* PurpleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurpleButton.swift; sourceTree = "<group>"; };
 		DD3BEAFF274680280061AACF /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		DD3BEB042746AC5E0061AACF /* WeekStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStatsViewController.swift; sourceTree = "<group>"; };
+		DD3BEB082746AC7D0061AACF /* WeekStatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStatsTableViewCell.swift; sourceTree = "<group>"; };
+		DD3BEB092746AC7D0061AACF /* WeekStatsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeekStatsTableViewCell.xib; sourceTree = "<group>"; };
+		DD3BEB0D2746B0CA0061AACF /* WeekStatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStatsModel.swift; sourceTree = "<group>"; };
 		DD5DFC1327454E4E007F5B14 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		DD5DFC1427454E4E007F5B14 /* FilterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterTableViewCell.xib; sourceTree = "<group>"; };
 		DDA4247F2743E89900E3E53D /* JogStatisticTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogStatisticTableViewCell.swift; sourceTree = "<group>"; };
@@ -175,6 +183,7 @@
 				DD1C8B042742AFEA00647DFC /* CreateEditJogController.swift */,
 				DD35D0DD2742E16F00595515 /* InfoViewController.swift */,
 				DD35D0E32742EB3F00595515 /* JogsViewController.swift */,
+				DD3BEB042746AC5E0061AACF /* WeekStatsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -185,6 +194,16 @@
 				DD35D0E72742EDA400595515 /* PurpleButton.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		DD3BEB072746AC670061AACF /* WeekStatsCell */ = {
+			isa = PBXGroup;
+			children = (
+				DD3BEB082746AC7D0061AACF /* WeekStatsTableViewCell.swift */,
+				DD3BEB092746AC7D0061AACF /* WeekStatsTableViewCell.xib */,
+				DD3BEB0D2746B0CA0061AACF /* WeekStatsModel.swift */,
+			);
+			path = WeekStatsCell;
 			sourceTree = "<group>";
 		};
 		DD5DFC1827454E54007F5B14 /* JogStatisticCell */ = {
@@ -208,6 +227,7 @@
 		DDA4247E2743E7B100E3E53D /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				DD3BEB072746AC670061AACF /* WeekStatsCell */,
 				DD5DFC1827454E54007F5B14 /* JogStatisticCell */,
 				DD5DFC1A27454E5E007F5B14 /* FilterCell */,
 			);
@@ -275,6 +295,7 @@
 			files = (
 				DD1C8AE92742A86000647DFC /* LaunchScreen.storyboard in Resources */,
 				DD5DFC1627454E4E007F5B14 /* FilterTableViewCell.xib in Resources */,
+				DD3BEB0B2746AC7D0061AACF /* WeekStatsTableViewCell.xib in Resources */,
 				DD1C8B012742ACCC00647DFC /* SFUIText-Medium.ttf in Resources */,
 				DDA424822743E89900E3E53D /* JogStatisticTableViewCell.xib in Resources */,
 				DD1C8AE62742A86000647DFC /* Assets.xcassets in Resources */,
@@ -335,18 +356,21 @@
 			files = (
 				DD1C8B052742AFEA00647DFC /* CreateEditJogController.swift in Sources */,
 				DDA424812743E89900E3E53D /* JogStatisticTableViewCell.swift in Sources */,
+				DD3BEB052746AC5E0061AACF /* WeekStatsViewController.swift in Sources */,
 				DD35D0E42742EB3F00595515 /* JogsViewController.swift in Sources */,
 				DD0AFFAC2744661C00D1B0DE /* JogsModel.swift in Sources */,
 				DD35D0E82742EDA400595515 /* PurpleButton.swift in Sources */,
 				DD5DFC1527454E4E007F5B14 /* FilterTableViewCell.swift in Sources */,
 				DD0AFFA9274465AB00D1B0DE /* NetworkManager.swift in Sources */,
 				DD0AFFAF2744666600D1B0DE /* JTError.swift in Sources */,
+				DD3BEB0E2746B0CA0061AACF /* WeekStatsModel.swift in Sources */,
 				DD1C8AE12742A85D00647DFC /* LoginScreenViewController.swift in Sources */,
 				DD1C8ADD2742A85D00647DFC /* AppDelegate.swift in Sources */,
 				DD3BEB00274680280061AACF /* LoginModel.swift in Sources */,
 				DD35D0E12742E72D00595515 /* MenuViewController.swift in Sources */,
 				DD1C8ADF2742A85D00647DFC /* SceneDelegate.swift in Sources */,
 				DD35D0DE2742E16F00595515 /* InfoViewController.swift in Sources */,
+				DD3BEB0A2746AC7D0061AACF /* WeekStatsTableViewCell.swift in Sources */,
 				DD1C8AF62742A9D300647DFC /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +522,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZGCXWM78C4;
 				INFOPLIST_FILE = JogTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -518,6 +543,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZGCXWM78C4;
 				INFOPLIST_FILE = JogTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

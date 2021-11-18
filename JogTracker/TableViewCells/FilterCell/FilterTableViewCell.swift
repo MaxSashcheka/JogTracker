@@ -25,6 +25,7 @@ class FilterTableViewCell: UITableViewCell {
     
     weak var delegate: FilterDelegate!
     
+    @available(iOS 13.4, *)
     lazy var dateFromPicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = UIDatePickerStyle.wheels
@@ -32,6 +33,7 @@ class FilterTableViewCell: UITableViewCell {
         return datePicker
     }()
     
+    @available(iOS 13.4, *)
     lazy var dateToPicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = UIDatePickerStyle.wheels
@@ -47,8 +49,6 @@ class FilterTableViewCell: UITableViewCell {
             label.font = UIFont.sfText(14, .regular)
             label.textColor = .warmGrey
         }
-        
-        
         setupTextFields()
     }
     
@@ -72,7 +72,10 @@ class FilterTableViewCell: UITableViewCell {
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         dateFromToolBar.setItems([flexSpace, dateFromDoneButton], animated: true)
         
-        dateFromTextField.inputView = dateFromPicker
+        
+        if #available(iOS 13.4, *) {
+            dateFromTextField.inputView = dateFromPicker
+        }
         dateFromTextField.inputAccessoryView = dateFromToolBar
         
         //dateToTextField
@@ -81,16 +84,26 @@ class FilterTableViewCell: UITableViewCell {
         let dateToDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveDateTo))
         dateToToolBar.setItems([flexSpace, dateToDoneButton], animated: true)
         
-        dateToTextField.inputView = dateToPicker
+        if #available(iOS 13.4, *) {
+            dateToTextField.inputView = dateToPicker
+        }
         dateToTextField.inputAccessoryView = dateToToolBar
         
-        
+    }
+    
+    func clearTextFields() {
+        dateFromTextField.text = ""
+        dateToTextField.text = ""
     }
     
     @objc private func saveDateFrom() {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
-        dateFromTextField.text = formatter.string(from: dateFromPicker.date)
+        if #available(iOS 13.4, *) {
+            dateFromTextField.text = formatter.string(from: dateFromPicker.date)
+        } else {
+            // Fallback on earlier versions
+        }
         
         endEditing(true)
     }
@@ -98,7 +111,11 @@ class FilterTableViewCell: UITableViewCell {
     @objc private func saveDateTo() {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
-        dateToTextField.text = formatter.string(from: dateToPicker.date)
+        if #available(iOS 13.4, *) {
+            dateToTextField.text = formatter.string(from: dateToPicker.date)
+        } else {
+            // Fallback on earlier versions
+        }
         
         endEditing(true)
     }

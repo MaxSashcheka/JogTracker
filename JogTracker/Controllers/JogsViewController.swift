@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KeychainAccess
 
 class JogsViewController: UIViewController {
 
@@ -77,6 +78,7 @@ class JogsViewController: UIViewController {
 
     var state: State = .empty
     var filterEnabled = false
+    
 
 }
 
@@ -106,7 +108,7 @@ extension JogsViewController {
             addJogButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -60),
             addJogButton.heightAnchor.constraint(equalToConstant: 60),
             
-            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10),
+            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             addButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30)
         ])
 
@@ -122,9 +124,11 @@ extension JogsViewController {
             guard let self = self else { return }
             
             switch result {
-            case .success(let responce):
-                let jogs = responce.response.jogs
-            
+            case .success(let response):
+                let keychain = Keychain(service: "com.rollingscopesschoolstudent.JogTracker")
+                keychain["userId"] = response.response.users.first?.userId
+                
+                let jogs = response.response.jogs
                 if jogs.isEmpty {
                     self.state = .empty
                 } else {
@@ -139,6 +143,9 @@ extension JogsViewController {
                 print(error)
             }
         }
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        navigationController?.navigationBar.backIndicatorImage = UIImage()
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
     }
     
 }
@@ -167,16 +174,21 @@ private extension JogsViewController {
         menuButton.tintColor = .white
         menuButton.addTarget(self, action: #selector(menuHandler), for: .touchUpInside)
         
+        let statsButton = UIButton(type: .system)
+        statsButton.setTitle("Statistic", for: .normal)
+        statsButton.titleLabel?.font = UIFont.sfText(20, .bold)
+        statsButton.tintColor = .white
+        statsButton.addTarget(self, action: #selector(openWeekStatsController), for: .touchUpInside)
+        
         if state == .list {
-            let buttonsStackView = UIStackView(arrangedSubviews: [filterButton, menuButton])
+            let buttonsStackView = UIStackView(arrangedSubviews: [statsButton, filterButton, menuButton])
             buttonsStackView.distribution = .equalSpacing
             buttonsStackView.axis = .horizontal
             buttonsStackView.alignment = .center
-            buttonsStackView.spacing = 50
+            buttonsStackView.spacing = 20
             navigationItem.rightBarButtonItem = UIBarButtonItem(customView: buttonsStackView)
         } else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButton)
-
         }
         
         navigationItem.titleView = titleView
@@ -202,11 +214,11 @@ private extension JogsViewController {
             jogsTableView.reloadData()
         }
         setupNavigationBar()
-        
     }
     
     @objc func filterHandler(sender: UIButton) {
         filterEnabled = !filterEnabled
+        
         if filterEnabled {
             sender.setImage(UIImage(named: "filterEnabled"), for: .normal)
             sender.tintColor = .sapGreen
@@ -214,16 +226,21 @@ private extension JogsViewController {
             sender.setImage(UIImage(named: "filterDisabled"), for: .normal)
             sender.tintColor = .white
         }
-        let indexPathToChange = IndexPath(row: 0, section: 0)
         
+        
+        
+        let indexPathToChange = IndexPath(row: 0, section: 0)
         jogsTableView.beginUpdates()
         if filterEnabled {
             jogsTableView.insertRows(at: [indexPathToChange], with: .automatic)
         } else {
             jogsTableView.deleteRows(at: [indexPathToChange], with: .automatic)
-
         }
         jogsTableView.endUpdates()
+        
+        jogsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        dataSourceJogs = fetchedJogs
+        jogsTableView.reloadData()
     }
     
     @objc func createJog() {
@@ -234,6 +251,12 @@ private extension JogsViewController {
     
     @objc func menuHandler() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func openWeekStatsController() {
+        let weekStatsViewController = WeekStatsViewController()
+        weekStatsViewController.jogs = fetchedJogs
+        navigationController?.pushViewController(weekStatsViewController, animated: true)
     }
 }
 
@@ -311,6 +334,7 @@ extension JogsViewController: UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.pushViewController(editJogViewController, animated: true)
         
     }
+
 }
 
 extension JogsViewController: FilterDelegate {
@@ -327,5 +351,3 @@ extension JogsViewController: FilterDelegate {
     }
     
 }
-
-

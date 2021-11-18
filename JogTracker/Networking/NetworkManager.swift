@@ -73,6 +73,7 @@ class NetworkManager {
         let keychain = Keychain(service: "com.rollingscopesschoolstudent.JogTracker")
         guard let accessToken = keychain["accessToken"] else { return }
         guard let tokenType = keychain["tokenType"] else { return }
+        guard let userId = keychain["userId"] else { return }
         
         let sessionConfig = URLSessionConfiguration.default
         let authValue: String? = "\(tokenType) \(accessToken)"
@@ -81,7 +82,7 @@ class NetworkManager {
         
         let parameters = [
             "jog_id": jogId,
-            "user_id": "134"
+            "user_id": userId
         ] as [String : Any]
         
         guard let url = URL(string: endPoint) else { return }
@@ -171,7 +172,8 @@ class NetworkManager {
         let keychain = Keychain(service: "com.rollingscopesschoolstudent.JogTracker")
         guard let accessToken = keychain["accessToken"] else { return }
         guard let tokenType = keychain["tokenType"] else { return }
-        
+        guard let userId = keychain["userId"] else { return }
+
         let sessionConfig = URLSessionConfiguration.default
         let authValue: String? = "\(tokenType) \(accessToken)"
         sessionConfig.httpAdditionalHeaders = ["Authorization": authValue ?? ""]
@@ -193,7 +195,7 @@ class NetworkManager {
             "time": jogToUpdate.time,
             "distance": jogToUpdate.distance,
             "jog_id": jogToUpdate.jogId,
-            "user_id": "134"
+            "user_id": userId
         ] as [String : Any]
         
         guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {

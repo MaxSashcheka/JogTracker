@@ -30,16 +30,17 @@ extension UIFont {
 }
 
 extension String {
-    func attributedText(mediumString: String) -> NSAttributedString {
+    func attributedText(mediumString: String, fontSize: CGFloat) -> NSAttributedString {
         let attributedString = NSMutableAttributedString(string: self,
                                                          attributes:
-                                                            [NSAttributedString.Key.font: UIFont.sfText(15, .medium),
+                                                            [NSAttributedString.Key.font: UIFont.sfText(fontSize, .medium),
                                                              NSAttributedString.Key.foregroundColor: UIColor.warmGrey
                                                          ])
         let boldFontAttribute: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.font: UIFont.sfText(15, .medium),
+            NSAttributedString.Key.font: UIFont.sfText(fontSize, .medium),
             NSAttributedString.Key.foregroundColor: UIColor.black
         ]
+    
         let range = (self as NSString).range(of: mediumString)
         attributedString.addAttributes(boldFontAttribute, range: range)
         return attributedString

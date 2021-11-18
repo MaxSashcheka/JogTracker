@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KeychainAccess
 
 class LoginScreenViewController: UIViewController {
 
@@ -16,14 +17,15 @@ class LoginScreenViewController: UIViewController {
         title = "Login"
         setupNavigationBar()
         
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        navigationController?.navigationBar.backIndicatorImage = UIImage()
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
+        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.barTintColor = .appleGreen
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        navigationController?.navigationBar.backIndicatorImage = UIImage()
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
     }
     
     private func setupNavigationBar() {
@@ -52,7 +54,19 @@ class LoginScreenViewController: UIViewController {
     }
 
     @IBAction func enterButtonTapped(_ sender: UIButton) {
+        NetworkManager.shared.authorize(withUUID: "hello") { result in
+            switch result {
+            case .success(let loginResponce):
+                let keychain = Keychain(service: "com.rollingscopesschoolstudent.JogTracker")
+                keychain["accessToken"] = loginResponce.response.accessToken
+                keychain["tokenType"] = loginResponce.response.tokenType
+            case .failure(let error):
+                print(error)
+            }
+        }
         openMenuController()
+
     }
+    
 }
 

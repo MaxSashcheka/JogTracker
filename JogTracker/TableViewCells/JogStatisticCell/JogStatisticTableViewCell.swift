@@ -41,23 +41,23 @@ class JogStatisticTableViewCell: UITableViewCell {
         let leftMinutes = jog.time % 60
     
         if hours == 0 {
-            timeLabel.attributedText = "Time: \(jog.time) min".attributedText(mediumString: "Time:")
+            timeLabel.attributedText = "Time: \(jog.time) min".attributedText(mediumString: "Time:", fontSize: 15)
         } else if hours == 1 {
-            timeLabel.attributedText = "Time: \(hours) hour \(leftMinutes) min".attributedText(mediumString: "Time:")
+            timeLabel.attributedText = "Time: \(hours) hour \(leftMinutes) min".attributedText(mediumString: "Time:", fontSize: 15)
         } else {
-            timeLabel.attributedText = "Time: \(hours) hours \(leftMinutes) min".attributedText(mediumString: "Time:")
+            timeLabel.attributedText = "Time: \(hours) hours \(leftMinutes) min".attributedText(mediumString: "Time:", fontSize: 15)
         }
         
         let jogDistanceInMeteres = jog.distance * 1000
         let jogTimeInSeconds = Float(jog.time) * 60
         let speed = jogDistanceInMeteres / jogTimeInSeconds
         let roundedSpeed = round(speed * 10) / 10.0
-        distanceLabel.attributedText = "Distance: \(jog.distance) km".attributedText(mediumString: "Distance:")
+        distanceLabel.attributedText = "Distance: \(jog.distance) km".attributedText(mediumString: "Distance:", fontSize: 15)
         if jog.distance == 0 || jog.time == 0 {
-            speedLabel.attributedText = "Speed: uncalculable".attributedText(mediumString: "Speed")
+            speedLabel.attributedText = "Speed: uncalculable".attributedText(mediumString: "Speed", fontSize: 15)
 
         } else {
-            speedLabel.attributedText = "Speed: \(roundedSpeed) m/s".attributedText(mediumString: "Speed")
+            speedLabel.attributedText = "Speed: \(roundedSpeed) m/s".attributedText(mediumString: "Speed", fontSize: 15)
         }
         
     }
