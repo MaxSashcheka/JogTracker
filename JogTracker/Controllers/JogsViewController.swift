@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KeychainAccess
 
 class JogsViewController: UIViewController {
 
@@ -72,7 +73,9 @@ class JogsViewController: UIViewController {
         return button
     }()
     
-    var jogs = [Jog]()
+    var dataSourceJogs = [Jog]()
+    var fetchedJogs = [Jog]()
+
     var state: State = .empty
     var filterEnabled = false
 
@@ -84,6 +87,9 @@ extension JogsViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let keychain = Keychain(service: "com.rollingscopesschoolstudent.JogTracker")
+        print(keychain["accessToken"])
         
         view.addSubview(sadFaceImageView)
         view.addSubview(commentLabel)
@@ -103,13 +109,14 @@ extension JogsViewController {
             addJogButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 60),
             addJogButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -60),
             addJogButton.heightAnchor.constraint(equalToConstant: 60),
-            addJogButton.widthAnchor.constraint(equalToConstant: 200),
             
             addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10),
             addButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30)
         ])
 
         updateUI()
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,7 +133,8 @@ extension JogsViewController {
                     self.state = .empty
                 } else {
                     self.state = .list
-                    self.jogs = jogs
+                    self.fetchedJogs = jogs
+                    self.dataSourceJogs = jogs
                 }
                 self.updateUI()
                 
@@ -239,28 +247,28 @@ extension JogsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if filterEnabled {
-            return jogs.count + 1
+            return dataSourceJogs.count + 1
         }
-        return jogs.count
+        return dataSourceJogs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if filterEnabled {
             if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: FilterTableViewCell.reuseIdentifier, for: indexPath)
-                
+                let cell = tableView.dequeueReusableCell(withIdentifier: FilterTableViewCell.reuseIdentifier, for: indexPath) as! FilterTableViewCell
+                cell.delegate = self
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: JogStatisticTableViewCell.reuseIdentifier, for: indexPath) as! JogStatisticTableViewCell
                 
-                let jog = jogs[indexPath.row - 1]
+                let jog = dataSourceJogs[indexPath.row - 1]
                 cell.setup(withJog: jog)
                 return cell
             }
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: JogStatisticTableViewCell.reuseIdentifier, for: indexPath) as! JogStatisticTableViewCell
             
-            let jog = jogs[indexPath.row]
+            let jog = dataSourceJogs[indexPath.row]
             cell.setup(withJog: jog)
             return cell
         }
@@ -283,9 +291,9 @@ extension JogsViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             tableView.beginUpdates()
             
-            let jogId = jogs[indexPath.row].jogId
+            let jogId = dataSourceJogs[indexPath.row].jogId
             NetworkManager.shared.deleteJog(withId: jogId)
-            jogs.remove(at: indexPath.row)
+            dataSourceJogs.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             
             tableView.endUpdates()
@@ -294,17 +302,34 @@ extension JogsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
         let editJogViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CreateEditJogViewController") as! CreateEditJogViewController
         
         if filterEnabled {
-            editJogViewController.selectedJog = jogs[indexPath.row - 1]
+            if indexPath.row == 0 { return }
+            editJogViewController.selectedJog = dataSourceJogs[indexPath.row - 1]
         } else {
-            editJogViewController.selectedJog = jogs[indexPath.row ]
+            editJogViewController.selectedJog = dataSourceJogs[indexPath.row ]
         }
         
         self.navigationController?.pushViewController(editJogViewController, animated: true)
         
     }
+}
+
+extension JogsViewController: FilterDelegate {
+    
+    func showJogsForDates(startDateTimeInterval: TimeInterval, endDateTimeInterval: TimeInterval) {
+        var matchedJogs = [Jog]()
+        for jog in fetchedJogs {
+            if jog.date >= startDateTimeInterval, jog.date <= endDateTimeInterval {
+                matchedJogs.append(jog)
+            }
+        }
+        dataSourceJogs = matchedJogs
+        jogsTableView.reloadData()
+    }
+    
 }
 
 

@@ -8,17 +8,17 @@
 import Foundation
 
 
-struct JogsResponce: Codable {
+struct JogsResponce: Decodable {
     var response: Response
     var timestamp: Int
 }
 
-struct Response: Codable {
+struct Response: Decodable {
     var jogs: [Jog]
     var users: [User]
 }
 
-struct Jog: Codable {
+struct Jog: Decodable {
     var jogId: Int
     var userId: String
     var distance: Float
@@ -34,7 +34,7 @@ struct Jog: Codable {
     }
 }
 
-struct User: Codable {
+struct User: Decodable {
     var userId: String
     var email: String
     var phoneNumber: String

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KeychainAccess
 
 class MenuViewController: UIViewController {
 
@@ -19,6 +20,9 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        let keychain = Keychain(service: "com.rollingscopesschoolstudent.JogTracker")
+        keychain["accessToken"] = "b1b"
+        
         buttons.forEach { button in
             button.backgroundColor = .clear
             button.titleLabel?.font = UIFont.sfText(30, .bold)

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KeychainAccess
 
 class CreateEditJogViewController: UIViewController {
 
@@ -33,6 +34,8 @@ class CreateEditJogViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
 
         setupBackgroundView()
         setupLabels()
@@ -40,6 +43,7 @@ class CreateEditJogViewController: UIViewController {
         setupButtons()
         setupTapGesture()
         fillTextFieldsWithJog()
+        setupNavigationBar()
     }
     
 }
@@ -47,6 +51,36 @@ class CreateEditJogViewController: UIViewController {
 // MARK: - Private interface
 
 private extension CreateEditJogViewController {
+    
+    func setupNavigationBar() {
+
+        let titleView = UIView()
+        titleView.backgroundColor = .clear
+        titleView.frame = .init(x: 0, y: 0, width: view.frame.width, height: 50)
+        
+        let logoBearImageView = UIImageView(image: UIImage(named: "logoBearWhite"))
+        logoBearImageView.contentMode = .scaleAspectFit
+        titleView.addSubview(logoBearImageView)
+
+        let filterButton = UIButton(type: .system)
+        filterButton.setImage(UIImage(named: "filterDisabled"), for: .normal)
+        filterButton.tintColor = .white
+
+        
+        let menuButton = UIButton(type: .system)
+        menuButton.setImage(UIImage(named: "menu"), for: .normal)
+        menuButton.tintColor = .white
+        menuButton.addTarget(self, action: #selector(menuHandler), for: .touchUpInside)
+        
+        let buttonsStackView = UIStackView(arrangedSubviews: [filterButton, menuButton])
+        buttonsStackView.distribution = .equalSpacing
+        buttonsStackView.axis = .horizontal
+        buttonsStackView.alignment = .center
+        buttonsStackView.spacing = 50
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: buttonsStackView)
+        
+        navigationItem.titleView = titleView
+    }
     
     func fillTextFieldsWithJog() {
         if let jog = selectedJog {
@@ -131,6 +165,10 @@ private extension CreateEditJogViewController {
         dateTextField.text = formatter.string(from: jogDatePicker.date)
         
         view.endEditing(true)
+    }
+    
+    @objc func menuHandler() {
+        popBack(3)
     }
     
 

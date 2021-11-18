@@ -42,7 +42,7 @@ class JogStatisticTableViewCell: UITableViewCell {
     
         if hours == 0 {
             timeLabel.attributedText = "Time: \(jog.time) min".attributedText(mediumString: "Time:")
-        } else if hours == 1{
+        } else if hours == 1 {
             timeLabel.attributedText = "Time: \(hours) hour \(leftMinutes) min".attributedText(mediumString: "Time:")
         } else {
             timeLabel.attributedText = "Time: \(hours) hours \(leftMinutes) min".attributedText(mediumString: "Time:")
