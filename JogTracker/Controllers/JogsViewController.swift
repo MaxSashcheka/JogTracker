@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import KeychainAccess
 
 class JogsViewController: UIViewController {
 
@@ -88,9 +87,6 @@ extension JogsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let keychain = Keychain(service: "com.rollingscopesschoolstudent.JogTracker")
-        print(keychain["accessToken"])
-        
         view.addSubview(sadFaceImageView)
         view.addSubview(commentLabel)
         view.addSubview(addJogButton)
@@ -140,7 +136,7 @@ extension JogsViewController {
                 
             case .failure(let error):
                 self.state = .empty
-                print(error.rawValue)
+                print(error)
             }
         }
     }

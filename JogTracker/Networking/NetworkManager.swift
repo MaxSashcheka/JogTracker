@@ -6,22 +6,29 @@
 //
 
 import Foundation
+import KeychainAccess
 
 class NetworkManager {
     
     static let shared = NetworkManager()
-    private let baseURL = "https://jogtracker.herokuapp.com/api"
-
     private init() {}
     
+    private let baseURL = "https://jogtracker.herokuapp.com/api"
+
     // MARK: - Get
     
     func fetchJogs(completed: @escaping (Result<JogsResponce, JTError>) -> Void) {
         
         let endPoint = baseURL + "/v1/data/sync"
         
+        let keychain = Keychain(service: "com.rollingscopesschoolstudent.JogTracker")
+        guard let accessToken = keychain["accessToken"] else { return }
+        guard let tokenType = keychain["tokenType"] else { return }
+        print(accessToken)
+        print(tokenType)
+        
         let sessionConfig = URLSessionConfiguration.default
-        let authValue: String? = "Bearer b01da59cec0de2bea6015d66e966e59dd007778998698388e1983f3116b4bb17"
+        let authValue: String? = "\(tokenType) \(accessToken)"
         sessionConfig.httpAdditionalHeaders = ["Authorization": authValue ?? ""]
         let session = URLSession(configuration: sessionConfig, delegate: self as? URLSessionDelegate, delegateQueue: nil)
         
@@ -63,8 +70,12 @@ class NetworkManager {
         
         let endPoint = baseURL + "/v1/data/jog"
         
+        let keychain = Keychain(service: "com.rollingscopesschoolstudent.JogTracker")
+        guard let accessToken = keychain["accessToken"] else { return }
+        guard let tokenType = keychain["tokenType"] else { return }
+        
         let sessionConfig = URLSessionConfiguration.default
-        let authValue: String? = "Bearer b01da59cec0de2bea6015d66e966e59dd007778998698388e1983f3116b4bb17"
+        let authValue: String? = "\(tokenType) \(accessToken)"
         sessionConfig.httpAdditionalHeaders = ["Authorization": authValue ?? ""]
         let session = URLSession(configuration: sessionConfig, delegate: self as? URLSessionDelegate, delegateQueue: nil)
         
@@ -105,8 +116,12 @@ class NetworkManager {
         
         let endPoint = baseURL + "/v1/data/jog"
         
+        let keychain = Keychain(service: "com.rollingscopesschoolstudent.JogTracker")
+        guard let accessToken = keychain["accessToken"] else { return }
+        guard let tokenType = keychain["tokenType"] else { return }
+        
         let sessionConfig = URLSessionConfiguration.default
-        let authValue: String? = "Bearer b01da59cec0de2bea6015d66e966e59dd007778998698388e1983f3116b4bb17"
+        let authValue: String? = "\(tokenType) \(accessToken)"
         sessionConfig.httpAdditionalHeaders = ["Authorization": authValue ?? ""]
         let session = URLSession(configuration: sessionConfig, delegate: self as? URLSessionDelegate, delegateQueue: nil)
         
@@ -153,8 +168,12 @@ class NetworkManager {
         
         let endPoint = baseURL + "/v1/data/jog"
         
+        let keychain = Keychain(service: "com.rollingscopesschoolstudent.JogTracker")
+        guard let accessToken = keychain["accessToken"] else { return }
+        guard let tokenType = keychain["tokenType"] else { return }
+        
         let sessionConfig = URLSessionConfiguration.default
-        let authValue: String? = "Bearer b01da59cec0de2bea6015d66e966e59dd007778998698388e1983f3116b4bb17"
+        let authValue: String? = "\(tokenType) \(accessToken)"
         sessionConfig.httpAdditionalHeaders = ["Authorization": authValue ?? ""]
         let session = URLSession(configuration: sessionConfig, delegate: self as? URLSessionDelegate, delegateQueue: nil)
         
@@ -193,6 +212,56 @@ class NetworkManager {
                 completed(.invalidResponce)
                 return
             }
+        }.resume()
+        
+    }
+    
+    // Authorization
+    
+    func authorize(withUUID uuid: String, completed: @escaping (Result<LoginResponce, JTError>) -> Void) {
+        
+        let endPoint = baseURL + "/v1/auth/uuidLogin"
+        guard let url = URL(string: endPoint) else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let parameters = [
+            "uuid": uuid,
+        ] as [String : Any]
+        
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
+            completed(.failure(.invalidSerialization))
+            return
+        }
+        request.httpBody = httpBody
+        
+        URLSession.shared.dataTask(with: request) { data, responce, error in
+            if let _ = error {
+                completed(.failure(.unableToComplete))
+                return
+            }
+            
+            guard let responce = responce as? HTTPURLResponse else {
+                completed(.failure(.invalidResponce))
+                return
+            }
+            
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                let loginResponce = try JSONDecoder().decode(LoginResponce.self, from: data)
+                completed(.success(loginResponce))
+                
+            } catch {
+                completed(.failure(.invalidData))
+            }
+            
+            
         }.resume()
         
     }

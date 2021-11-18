@@ -19,9 +19,6 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        let keychain = Keychain(service: "com.rollingscopesschoolstudent.JogTracker")
-        keychain["accessToken"] = "b1b"
         
         buttons.forEach { button in
             button.backgroundColor = .clear
@@ -35,6 +32,18 @@ class MenuViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.barTintColor = .white
+        NetworkManager.shared.authorize(withUUID: "hello") { result in
+            switch result {
+            case .success(let loginResponce):
+                let keychain = Keychain(service: "com.rollingscopesschoolstudent.JogTracker")
+                keychain["accessToken"] = loginResponce.response.accessToken
+                keychain["tokenType"] = loginResponce.response.tokenType
+
+
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     private func setupNavigationBar() {

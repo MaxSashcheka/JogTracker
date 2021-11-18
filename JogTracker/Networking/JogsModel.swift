@@ -10,7 +10,7 @@ import Foundation
 
 struct JogsResponce: Decodable {
     var response: Response
-    var timestamp: Int
+    var timestamp: TimeInterval
 }
 
 struct Response: Decodable {
