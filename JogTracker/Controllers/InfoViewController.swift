@@ -37,6 +37,7 @@ class InfoViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
+        navigationItem.hidesBackButton = true
 
         let titleView = UIView()
         titleView.backgroundColor = .clear

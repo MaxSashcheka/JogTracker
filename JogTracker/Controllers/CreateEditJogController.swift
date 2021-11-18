@@ -58,6 +58,8 @@ class CreateEditJogViewController: UIViewController {
 private extension CreateEditJogViewController {
     
     func setupNavigationBar() {
+        navigationItem.hidesBackButton = true
+
 
         let titleView = UIView()
         titleView.backgroundColor = .clear

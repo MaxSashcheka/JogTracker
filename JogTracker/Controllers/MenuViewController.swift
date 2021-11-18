@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SideMenu
 
 class MenuViewController: UIViewController {
 
@@ -16,8 +17,17 @@ class MenuViewController: UIViewController {
     @IBOutlet var buttons: [UIButton]!
     var selectedButtonIndex = 0
     
+    var menu: SideMenuNavigationController!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        menu = SideMenuNavigationController(rootViewController: MenuListTableViewController(style: .insetGrouped))
+        menu?.leftSide = true
+        menu.menuWidth = view.frame.width * 0.6
+        menu.isNavigationBarHidden = true
+        SideMenuManager.default.leftMenuNavigationController = menu
         
         buttons.forEach { button in
             button.backgroundColor = .clear
@@ -26,7 +36,7 @@ class MenuViewController: UIViewController {
         }
         
         setupNavigationBar()
-
+        sideMenuConfig()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,8 +46,15 @@ class MenuViewController: UIViewController {
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
     }
     
-    private func setupNavigationBar() {
+    func sideMenuConfig() {
+        let sideMenuVC = UIViewController()
+        sideMenuVC.view.backgroundColor = .systemRed
         
+    
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.hidesBackButton = true
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
 
         let titleView = UIView()
@@ -91,6 +108,8 @@ class MenuViewController: UIViewController {
     @IBAction func contactUsButtonTapped(_ sender: UIButton) {
         selectedButtonIndex = 2
         updateSelectedButton()
+        present(menu, animated: true, completion: nil)
         
     }
 }
+

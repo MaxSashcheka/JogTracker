@@ -29,7 +29,6 @@ class LoginScreenViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-
         let titleView = UIView()
         titleView.backgroundColor = .clear
         titleView.frame = .init(x: 0, y: 0, width: view.frame.width, height: 50)

@@ -25,7 +25,16 @@ class WeekStatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let titleLabel = UILabel()
+        let attributes: [NSAttributedString.Key : AnyObject] = [NSAttributedString.Key.font: UIFont.sfText(25, .bold),
+                                                                NSAttributedString.Key.foregroundColor: UIColor.white]
+        titleLabel.attributedText = NSAttributedString(string: "Statistic per weeks", attributes: attributes)
+        titleLabel.sizeToFit()
+        navigationItem.titleView = titleLabel
+        
+        
         view.addSubview(weekStatsTableView)
+        setupNavigationBar()
         DispatchQueue.main.async {
             self.weekStatsModels = self.calculateWeekStatsModels()
             self.weekStatsTableView.reloadData()
@@ -46,6 +55,12 @@ class WeekStatsViewController: UIViewController {
         menuButton.setImage(UIImage(named: "menu"), for: .normal)
         menuButton.tintColor = .white
         menuButton.addTarget(self, action: #selector(menuHandler), for: .touchUpInside)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButton)
+    }
+    
+    @objc func menuHandler() {
+        popBack(3)
     }
     
     private func calculateWeekStatsModels() -> [WeekStatsModel] {
@@ -66,7 +81,7 @@ class WeekStatsViewController: UIViewController {
             
             var jogsMatchedCurrentWeek = [Jog]()
             for jog in jogs {
-                if jog.date > weekStartDateTimeInterval, jog.date < weekEndDateTimerInterval {
+                if jog.date >= weekStartDateTimeInterval, jog.date <= weekEndDateTimerInterval {
                     jogsMatchedCurrentWeek.append(jog)
                 }
             }
@@ -131,5 +146,8 @@ extension WeekStatsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
 }

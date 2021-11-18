@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,6 +31,9 @@
 		DD3BEB0A2746AC7D0061AACF /* WeekStatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3BEB082746AC7D0061AACF /* WeekStatsTableViewCell.swift */; };
 		DD3BEB0B2746AC7D0061AACF /* WeekStatsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD3BEB092746AC7D0061AACF /* WeekStatsTableViewCell.xib */; };
 		DD3BEB0E2746B0CA0061AACF /* WeekStatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3BEB0D2746B0CA0061AACF /* WeekStatsModel.swift */; };
+		DD3BEB132746F1250061AACF /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = DD3BEB122746F1250061AACF /* SideMenu */; };
+		DD3BEB162746F6A70061AACF /* MenuListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3BEB152746F6A70061AACF /* MenuListTableViewController.swift */; };
+		DD3BEB192746F8DD0061AACF /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3BEB182746F8DD0061AACF /* FeedbackViewController.swift */; };
 		DD5DFC1527454E4E007F5B14 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5DFC1327454E4E007F5B14 /* FilterTableViewCell.swift */; };
 		DD5DFC1627454E4E007F5B14 /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5DFC1427454E4E007F5B14 /* FilterTableViewCell.xib */; };
 		DDA424812743E89900E3E53D /* JogStatisticTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA4247F2743E89900E3E53D /* JogStatisticTableViewCell.swift */; };
@@ -66,6 +69,8 @@
 		DD3BEB082746AC7D0061AACF /* WeekStatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStatsTableViewCell.swift; sourceTree = "<group>"; };
 		DD3BEB092746AC7D0061AACF /* WeekStatsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeekStatsTableViewCell.xib; sourceTree = "<group>"; };
 		DD3BEB0D2746B0CA0061AACF /* WeekStatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStatsModel.swift; sourceTree = "<group>"; };
+		DD3BEB152746F6A70061AACF /* MenuListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListTableViewController.swift; sourceTree = "<group>"; };
+		DD3BEB182746F8DD0061AACF /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		DD5DFC1327454E4E007F5B14 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		DD5DFC1427454E4E007F5B14 /* FilterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterTableViewCell.xib; sourceTree = "<group>"; };
 		DDA4247F2743E89900E3E53D /* JogStatisticTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JogStatisticTableViewCell.swift; sourceTree = "<group>"; };
@@ -77,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD3BEB132746F1250061AACF /* SideMenu in Frameworks */,
 				9F83539DC64D3840473E2334 /* Pods_JogTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -184,6 +190,8 @@
 				DD35D0DD2742E16F00595515 /* InfoViewController.swift */,
 				DD35D0E32742EB3F00595515 /* JogsViewController.swift */,
 				DD3BEB042746AC5E0061AACF /* WeekStatsViewController.swift */,
+				DD3BEB152746F6A70061AACF /* MenuListTableViewController.swift */,
+				DD3BEB182746F8DD0061AACF /* FeedbackViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -252,6 +260,9 @@
 			dependencies = (
 			);
 			name = JogTracker;
+			packageProductDependencies = (
+				DD3BEB122746F1250061AACF /* SideMenu */,
+			);
 			productName = JogTracker;
 			productReference = DD1C8AD92742A85D00647DFC /* JogTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -279,6 +290,9 @@
 				Base,
 			);
 			mainGroup = DD1C8AD02742A85D00647DFC;
+			packageReferences = (
+				DD3BEB112746F1250061AACF /* XCRemoteSwiftPackageReference "SideMenu" */,
+			);
 			productRefGroup = DD1C8ADA2742A85D00647DFC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -357,11 +371,13 @@
 				DD1C8B052742AFEA00647DFC /* CreateEditJogController.swift in Sources */,
 				DDA424812743E89900E3E53D /* JogStatisticTableViewCell.swift in Sources */,
 				DD3BEB052746AC5E0061AACF /* WeekStatsViewController.swift in Sources */,
+				DD3BEB192746F8DD0061AACF /* FeedbackViewController.swift in Sources */,
 				DD35D0E42742EB3F00595515 /* JogsViewController.swift in Sources */,
 				DD0AFFAC2744661C00D1B0DE /* JogsModel.swift in Sources */,
 				DD35D0E82742EDA400595515 /* PurpleButton.swift in Sources */,
 				DD5DFC1527454E4E007F5B14 /* FilterTableViewCell.swift in Sources */,
 				DD0AFFA9274465AB00D1B0DE /* NetworkManager.swift in Sources */,
+				DD3BEB162746F6A70061AACF /* MenuListTableViewController.swift in Sources */,
 				DD0AFFAF2744666600D1B0DE /* JTError.swift in Sources */,
 				DD3BEB0E2746B0CA0061AACF /* WeekStatsModel.swift in Sources */,
 				DD1C8AE12742A85D00647DFC /* LoginScreenViewController.swift in Sources */,
@@ -577,6 +593,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DD3BEB112746F1250061AACF /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DD3BEB122746F1250061AACF /* SideMenu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD3BEB112746F1250061AACF /* XCRemoteSwiftPackageReference "SideMenu" */;
+			productName = SideMenu;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DD1C8AD12742A85D00647DFC /* Project object */;
 }
