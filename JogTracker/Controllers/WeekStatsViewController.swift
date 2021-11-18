@@ -22,8 +22,42 @@ class WeekStatsViewController: UIViewController {
     var jogs: [Jog]!
     var weekStatsModels = [WeekStatsModel]()
     
+}
+
+// MARK: - ViewController overrides
+
+extension WeekStatsViewController {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.backward")
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "chevron.backward")!
+        navigationController?.navigationBar.tintColor = .white
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(weekStatsTableView)
+        
+        setupNavigationBar()
+        
+        DispatchQueue.main.async {
+            self.weekStatsModels = self.calculateWeekStatsModels()
+            self.weekStatsTableView.reloadData()
+        }
+    }
+}
+
+// MARK: - Private interface
+
+private extension WeekStatsViewController {
+    
+    @objc func menuHandler() {
+        popBack(3)
+    }
+    
+    func setupNavigationBar() {
         
         let titleLabel = UILabel()
         let attributes: [NSAttributedString.Key : AnyObject] = [NSAttributedString.Key.font: UIFont.sfText(25, .bold),
@@ -32,25 +66,6 @@ class WeekStatsViewController: UIViewController {
         titleLabel.sizeToFit()
         navigationItem.titleView = titleLabel
         
-        
-        view.addSubview(weekStatsTableView)
-        setupNavigationBar()
-        DispatchQueue.main.async {
-            self.weekStatsModels = self.calculateWeekStatsModels()
-            self.weekStatsTableView.reloadData()
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.backward")
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "chevron.backward")!
-        navigationController?.navigationBar.tintColor = .white
-        
-    }
-    
-    private func setupNavigationBar() {
         let menuButton = UIButton(type: .system)
         menuButton.setImage(UIImage(named: "menu"), for: .normal)
         menuButton.tintColor = .white
@@ -59,11 +74,7 @@ class WeekStatsViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButton)
     }
     
-    @objc func menuHandler() {
-        popBack(3)
-    }
-    
-    private func calculateWeekStatsModels() -> [WeekStatsModel] {
+    func calculateWeekStatsModels() -> [WeekStatsModel] {
         let secondsPerWeek = TimeInterval(60 * 60 * 24 * 7)
         
         var maxTimeInterval: TimeInterval = 0
@@ -124,10 +135,6 @@ class WeekStatsViewController: UIViewController {
         
         return weekStatsArray
     }
-    
-    
-
-
 }
 
 extension WeekStatsViewController: UITableViewDelegate, UITableViewDataSource {

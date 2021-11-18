@@ -149,14 +149,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your feedback is important for us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MR7-qD-sRB">
-                                <rect key="frame" x="20" y="94" width="374" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gdi-pR-E3K">
-                                <rect key="frame" x="20" y="179" width="374" height="32"/>
+                                <rect key="frame" x="20" y="105" width="374" height="32"/>
                                 <segments>
                                     <segment title="1"/>
                                     <segment title="2"/>
@@ -166,21 +160,21 @@
                                 </segments>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Topic id:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNd-Lu-Wib">
-                                <rect key="frame" x="20" y="148" width="374" height="21"/>
+                                <rect key="frame" x="20" y="74" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4pr-vA-DbK">
-                                <rect key="frame" x="20" y="220" width="374" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your feedback text below:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4pr-vA-DbK">
+                                <rect key="frame" x="20" y="146" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tx1-jI-HMg">
-                                <rect key="frame" x="20" y="251" width="374" height="491"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="tx1-jI-HMg">
+                                <rect key="frame" x="20" y="177" width="374" height="565"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -190,15 +184,16 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="oXR-wQ-FU9"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Send feedback"/>
+                                <connections>
+                                    <action selector="sendFeedback:" destination="sNB-m9-3p9" eventType="touchUpInside" id="yr1-Wb-iyN"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nc4-Jw-NRJ"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="nc4-Jw-NRJ" firstAttribute="trailing" secondItem="gdi-pR-E3K" secondAttribute="trailing" constant="20" id="0kk-yV-sWt"/>
-                            <constraint firstItem="WNd-Lu-Wib" firstAttribute="top" secondItem="MR7-qD-sRB" secondAttribute="bottom" constant="30" id="0vn-MC-62z"/>
-                            <constraint firstItem="MR7-qD-sRB" firstAttribute="top" secondItem="nc4-Jw-NRJ" secondAttribute="top" constant="50" id="3IY-g4-Apd"/>
                             <constraint firstItem="nc4-Jw-NRJ" firstAttribute="trailing" secondItem="WNd-Lu-Wib" secondAttribute="trailing" constant="20" id="3xE-1p-qSQ"/>
                             <constraint firstItem="nc4-Jw-NRJ" firstAttribute="trailing" secondItem="4pr-vA-DbK" secondAttribute="trailing" constant="20" id="41b-Kd-Wpo"/>
                             <constraint firstItem="tx1-jI-HMg" firstAttribute="leading" secondItem="nc4-Jw-NRJ" secondAttribute="leading" constant="20" id="5Fk-l1-Aru"/>
@@ -206,17 +201,23 @@
                             <constraint firstItem="4pr-vA-DbK" firstAttribute="top" secondItem="gdi-pR-E3K" secondAttribute="bottom" constant="10" id="88y-jB-rec"/>
                             <constraint firstItem="Zps-jB-aKw" firstAttribute="leading" secondItem="nc4-Jw-NRJ" secondAttribute="leading" constant="60" id="9QC-tG-6px"/>
                             <constraint firstItem="4pr-vA-DbK" firstAttribute="leading" secondItem="nc4-Jw-NRJ" secondAttribute="leading" constant="20" id="CEv-of-h0Q"/>
-                            <constraint firstItem="MR7-qD-sRB" firstAttribute="leading" secondItem="nc4-Jw-NRJ" secondAttribute="leading" constant="20" id="DF0-PV-4ex"/>
                             <constraint firstItem="nc4-Jw-NRJ" firstAttribute="trailing" secondItem="tx1-jI-HMg" secondAttribute="trailing" constant="20" id="N54-Wb-zMj"/>
+                            <constraint firstItem="WNd-Lu-Wib" firstAttribute="top" secondItem="nc4-Jw-NRJ" secondAttribute="top" constant="30" id="OnJ-Rb-tvl"/>
                             <constraint firstItem="gdi-pR-E3K" firstAttribute="leading" secondItem="nc4-Jw-NRJ" secondAttribute="leading" constant="20" id="Qen-oO-c9e"/>
                             <constraint firstItem="tx1-jI-HMg" firstAttribute="top" secondItem="4pr-vA-DbK" secondAttribute="bottom" constant="10" id="VtD-1h-jjI"/>
                             <constraint firstItem="Zps-jB-aKw" firstAttribute="top" secondItem="tx1-jI-HMg" secondAttribute="bottom" constant="30" id="WKh-b7-70R"/>
                             <constraint firstItem="gdi-pR-E3K" firstAttribute="top" secondItem="WNd-Lu-Wib" secondAttribute="bottom" constant="10" id="ffZ-i8-5uJ"/>
                             <constraint firstItem="nc4-Jw-NRJ" firstAttribute="bottom" secondItem="Zps-jB-aKw" secondAttribute="bottom" constant="30" id="pQE-7D-tYx"/>
                             <constraint firstItem="WNd-Lu-Wib" firstAttribute="leading" secondItem="nc4-Jw-NRJ" secondAttribute="leading" constant="20" id="ph4-Ng-bDh"/>
-                            <constraint firstItem="nc4-Jw-NRJ" firstAttribute="trailing" secondItem="MR7-qD-sRB" secondAttribute="trailing" constant="20" id="r5b-09-whV"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="feedbackCommentLabel" destination="4pr-vA-DbK" id="HOD-Oz-f8Z"/>
+                        <outlet property="feedbackTextView" destination="tx1-jI-HMg" id="BVJ-NA-kBy"/>
+                        <outlet property="sendFeedbackButton" destination="Zps-jB-aKw" id="Xie-bd-eNM"/>
+                        <outlet property="topicIdLabel" destination="WNd-Lu-Wib" id="BLV-t7-Yw3"/>
+                        <outlet property="topicPickerSegmentedControl" destination="gdi-pR-E3K" id="gYP-Qo-eGM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SEf-Vj-dXj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -173,7 +173,7 @@ class NetworkManager {
         guard let accessToken = keychain["accessToken"] else { return }
         guard let tokenType = keychain["tokenType"] else { return }
         guard let userId = keychain["userId"] else { return }
-
+        
         let sessionConfig = URLSessionConfiguration.default
         let authValue: String? = "\(tokenType) \(accessToken)"
         sessionConfig.httpAdditionalHeaders = ["Authorization": authValue ?? ""]
@@ -218,7 +218,7 @@ class NetworkManager {
         
     }
     
-    // Authorization
+    //MARK: -  Authorization
     
     func authorize(withUUID uuid: String, completed: @escaping (Result<LoginResponce, JTError>) -> Void) {
         
@@ -268,5 +268,52 @@ class NetworkManager {
         
     }
     
+    //MARK: -  Send feedback
+    
+    func postFeedback(withTopicId topicId: Int, text: String, completed: @escaping (JTError?) -> Void) {
+        
+        let endPoint = baseURL + "/v1/feedback/send"
+        
+        let keychain = Keychain(service: "com.rollingscopesschoolstudent.JogTracker")
+        guard let accessToken = keychain["accessToken"] else { return }
+        guard let tokenType = keychain["tokenType"] else { return }
+        
+        let sessionConfig = URLSessionConfiguration.default
+        let authValue: String? = "\(tokenType) \(accessToken)"
+        sessionConfig.httpAdditionalHeaders = ["Authorization": authValue ?? ""]
+        let session = URLSession(configuration: sessionConfig, delegate: self as? URLSessionDelegate, delegateQueue: nil)
+        
+        guard let url = URL(string: endPoint) else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let parameters = [
+            "topic_id": topicId,
+            "text": text
+        ] as [String : Any]
+        
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
+            completed(.invalidSerialization)
+            return
+        }
+        request.httpBody = httpBody
+        
+        session.dataTask(with: request) { data, responce, error in
+            if let _ = error {
+                completed(.unableToComplete)
+                return
+            }
+            
+            print(responce)
+            guard let responce = responce as? HTTPURLResponse else {
+                completed(.invalidResponce)
+                return
+            }
+            
+        }.resume()
+        
+    }
     
 }

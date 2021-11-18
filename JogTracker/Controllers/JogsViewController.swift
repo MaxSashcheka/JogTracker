@@ -21,6 +21,7 @@ class JogsViewController: UIViewController {
             }
         }
     }
+    var state: State = .empty
     
     lazy var sadFaceImageView: UIImageView = {
         let imageView = UIImageView()
@@ -75,47 +76,13 @@ class JogsViewController: UIViewController {
     
     var dataSourceJogs = [Jog]()
     var fetchedJogs = [Jog]()
-
-    var state: State = .empty
     var filterEnabled = false
-    
 
 }
 
 // MARK: - ViewController overrides
 
 extension JogsViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.addSubview(sadFaceImageView)
-        view.addSubview(commentLabel)
-        view.addSubview(addJogButton)
-
-        view.addSubview(jogsTableView)
-        view.addSubview(addButton)
-
-        NSLayoutConstraint.activate([
-            sadFaceImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 200),
-            sadFaceImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            
-            commentLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            commentLabel.topAnchor.constraint(equalTo: sadFaceImageView.bottomAnchor, constant: 30),
-
-            addJogButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
-            addJogButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 60),
-            addJogButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -60),
-            addJogButton.heightAnchor.constraint(equalToConstant: 60),
-            
-            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            addButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30)
-        ])
-
-        updateUI()
-        
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.barTintColor = .appleGreen
@@ -146,6 +113,37 @@ extension JogsViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         navigationController?.navigationBar.backIndicatorImage = UIImage()
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.addSubview(sadFaceImageView)
+        view.addSubview(commentLabel)
+        view.addSubview(addJogButton)
+
+        view.addSubview(jogsTableView)
+        view.addSubview(addButton)
+
+        NSLayoutConstraint.activate([
+            sadFaceImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 200),
+            sadFaceImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            
+            commentLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            commentLabel.topAnchor.constraint(equalTo: sadFaceImageView.bottomAnchor, constant: 30),
+
+            addJogButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
+            addJogButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 60),
+            addJogButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -60),
+            addJogButton.heightAnchor.constraint(equalToConstant: 60),
+            
+            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            addButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30)
+        ])
+
+        updateUI()
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
     }
     
 }

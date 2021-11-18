@@ -211,7 +211,6 @@ private extension CreateEditJogViewController {
             }
         }
         
-        
         navigationController?.popViewController(animated: true)
     }
     

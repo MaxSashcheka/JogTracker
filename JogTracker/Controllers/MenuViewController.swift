@@ -23,7 +23,7 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        menu = SideMenuNavigationController(rootViewController: MenuListTableViewController(style: .insetGrouped))
+        menu = SideMenuNavigationController(rootViewController: MenuListTableViewController(style: .grouped))
         menu?.leftSide = true
         menu.menuWidth = view.frame.width * 0.6
         menu.isNavigationBarHidden = true
@@ -46,14 +46,14 @@ class MenuViewController: UIViewController {
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
     }
     
-    func sideMenuConfig() {
-        let sideMenuVC = UIViewController()
-        sideMenuVC.view.backgroundColor = .systemRed
-        
     
-    }
+}
+
+// MARK: - Private interface
+
+private extension MenuViewController {
     
-    private func setupNavigationBar() {
+    func setupNavigationBar() {
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
 
@@ -74,7 +74,12 @@ class MenuViewController: UIViewController {
         navigationItem.titleView = titleView
     }
     
-    private func updateSelectedButton() {
+    func sideMenuConfig() {
+        let sideMenuVC = UIViewController()
+        sideMenuVC.view.backgroundColor = .systemRed
+    }
+    
+    func updateSelectedButton() {
         for index in buttons.indices {
             if index == selectedButtonIndex {
                 buttons[index].titleLabel?.tintColor = .appleGreen
@@ -109,7 +114,8 @@ class MenuViewController: UIViewController {
         selectedButtonIndex = 2
         updateSelectedButton()
         present(menu, animated: true, completion: nil)
-        
     }
+    
 }
+
 
